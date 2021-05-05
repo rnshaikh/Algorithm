@@ -1,6 +1,6 @@
 
 
-#  Lineked List
+#  Linked List
 
     Linked list is collection of element of same type which is not stored in contagious block of memory.
     Linked list containing list of node where each node has data part and pointer to next element.
