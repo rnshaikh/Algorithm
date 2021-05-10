@@ -25,3 +25,24 @@
     1) linked list contained list of node.
     2) each node contain two part 1) data value 2) pointer to next node.
     3) thre is head node which point to first element of node
+
+
+
+
+
+# Doubly Linked List
+
+    In Doubly Linked list every node have extra pointer to previous node so that traversal in doubly linked list done in
+    both direction.
+
+# Advantages over singly linked list
+
+    In dobuly linked list deletion of node is done faster as every node have pointer to previous node.
+    A DLL can be traversed in both forward and backward direction.
+    We can quickly insert a new node before a given node.
+
+
+# Disadvantages over singly linked list
+
+    Every node of DLL Require extra space for an previous pointer.
+    All operations require an extra pointer previous to be maintained.
