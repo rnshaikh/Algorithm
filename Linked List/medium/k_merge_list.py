@@ -31,3 +31,7 @@ class Solution:
             link.add(i)
 
         return link.head
+
+
+
+
