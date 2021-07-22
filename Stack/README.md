@@ -21,5 +21,5 @@
 
 
 # implementation
-    stack is implement throuh array and linkelist
+    stack is implement throuh array and linkedlist
 
