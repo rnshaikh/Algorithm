@@ -86,3 +86,42 @@ Types Of Binary Tree:
                             2) in order traversal : left, root, right
                             3) post order traversal: left, right, root
 
+
+
+
+# heap:
+
+    heap is special tree data structure where tree is complete binary tree.
+    there two types of heap which also binary heap.
+    1) Min Heap : min heap is complete binary tree where root nodes have smallest value than all its childer node and which recursively true
+                  for all subtree
+
+    2) Max heap : max heap is complete binary tree where root nodes have largest value than all its childern and it recursively true for all
+                  subtree
+
+
+
+    if binary heap store in array representation in level order then
+    for any ith node
+
+    parent node : i-1/2
+    left child node: 2*i+1
+    right child node : 2*i+2
+
+
+# Applications of heap:
+
+    1) Heap sort : heap is used in heap sort which sort element O(nlogn) time
+    2) PriorityQueue: Priority Queue is efficently implement using binary heap it perform insert, delete, extractmax operation O(log n) time.
+    3) Graph Algorithms: The priority queues are especially used in Graph Algorithms like Dijkstra’s Shortest Path and Prim’s Minimum Spanning Tree.
+    4) many other examples like find kth largest element in array, sort almost sorted array, merge k sorted array.
+
+
+# operation on min heap:
+
+1) insert : it add element in heap : o(log n)
+2) delete : it remove element from heap : O(log n)
+3) getmin : get min value from heap : O(1)
+4) extractmin : remove min value from heap: O(log n)
+5) decreaseKey : decrease key value of node if decrease value greater than parent no need fix heap else need to fixed violated heap
+                O(log n)
