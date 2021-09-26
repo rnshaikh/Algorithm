@@ -29,6 +29,12 @@
     9) divide array into right half array, pi+1, end   ommiting pivot element as it is sorted already
     recursively call divide function until start<end
 
+
+    if array is already sorted and we choose first or last element as pivot element
+    it gives O(n2) running times
+
+    so choosing random pivot or element which is median array gives O(n logn)
+
 """
 
 

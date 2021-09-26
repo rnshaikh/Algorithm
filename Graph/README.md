@@ -83,8 +83,3 @@
     6)  GPS Navigation systems: Breadth First Search is used to find all neighboring locations.
 
 
-
-
-
-
-    3)

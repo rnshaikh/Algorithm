@@ -10,11 +10,11 @@ class MinHeap:
 
 
     def parent(self, index):
-        return (index-1)/2
+        return (index-1)//2
 
     def insert(self,value):
         heappush(self.heap, value)
-
+        print(self.heap)
 
     def getmin(self):
 
@@ -22,8 +22,9 @@ class MinHeap:
 
 
     def extractMin(self):
-        return heappop(self.heap)
-
+        num = heappop(self.heap)
+        print("extrct func",self.heap)
+        return num
 
     def decreaseKey(self, index, value):
 
@@ -36,6 +37,7 @@ class MinHeap:
     def delete(self, index):
 
         self.decreaseKey(index, float("-inf"))
+        print("del function", self.heap)
         self.extractMin()
 
 
@@ -45,15 +47,15 @@ class MinHeap:
 heap = MinHeap()
 heap.insert(3)
 heap.insert(2)
-heap.delete(1)
-print("After delete index 1", heap.heap)
 heap.insert(15)
 heap.insert(5)
 heap.insert(4)
 heap.insert(45)
+heap.delete(1)
+print("After delete index 1", heap.heap)
 
 print("Extract Min", heap.extractMin())
-print("Get Min :", heap.getmin())
-heap.decreaseKey(2, 1)
-print("After decreaseKey at 2 to 1" , heap.getmin())
+#print("Get Min :", heap.getmin())
+# heap.decreaseKey(2, 1)
+# print("After decreaseKey at 2 to 1" , heap.getmin())
 
