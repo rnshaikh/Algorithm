@@ -296,7 +296,7 @@
     binary search tree : balanced fives insertion, deletion, searching in O(logn)
 
 
-    Binary Search Tree:
+    1) Binary Search Tree:
         in binary search tree left subtree have value less than root node and right subtrees have have value greater
         than root node.
 
@@ -352,7 +352,7 @@
                 then we are going to 2-3 rotation and recoloring.
 
 
-    Hash Table : hash table is array of objects stored in associative manner. its index
+    2) Hash Table : hash table is array of objects stored in associative manner. its index
     has unqiue value which is calculated by hash function
 
     hash function : map or object to fixed unque value so that searching become fast in constant time
@@ -361,6 +361,96 @@
 
     it used for fast searching problems, like checking duplication, checking nodes or configuration is already visited in
     game graph. blocking network traffic.
+
+
+
+    hashing : hashing take the input gives unique index where object is store
+    there is property of hash function
+    1) uniformly distributed : so objects should be uniformly distributed
+    2) less collision : collison of objects in same key should be less.
+    2) hashing algorithm : should be easy and run in constant time
+
+
+    avoid collision :
+    1) chaining: so here we store linked list at every index. so if there is more than 2 objects. it will be add as new node
+                 space requirement is more here. but deletion is faster
+
+    2) open addression : in open addressing there will one object at each index if it is already fill then you try next until it is empty it called
+                         linear probing
+
+                         onther one is if index is already filled then you hash again which give new index it call double hashing
+
+                         here space requirement is less but deletion is difficult
+
+    Quick And Dirty Hash function:
+        1) take phonenumber or name convert into integers using compression function like mod n convert into index
+
+        how many buckets or size of array should be:
+        1) should be prime number
+        2) not close to power  of 2 and power of 10
+
+
+    load factor of hashing (alpha):
+        load factor of hashing define how well datasets are spread in bucket
+
+        formula : no of objects inserted / no of buckets
+
+        in chaining load factor can a greater 1 than one beacuse every bucket have more than one object in linked list
+        but in open addressing load factor should be a less than 1
+
+
+        there is no prefect has function every hash function perform linear for some data sets
+
+        so to imporove hash function we can do universal hashing.
+
+        1) use cryptography for hashing
+        2) randomization : use family of hash function and choose random hash function during runtime
+
+    univeral hash function :
+
+        defination : let h be the set of hash function h = {h1, h2, hn}
+        and u is universal data set u = {0, 1, n}
+        then x,y belong to h
+
+        then probability of index of x, y data collision is  < = 1/n  where n is no of buckets
+
+
+    proof of universal hash function in chaining:
+
+        if we use random famliy of hash function and maintain load factor alpha constant then
+        hash function searching will have constant time
+
+
+    proof of universal hash function in open-addressing:
+
+        under heuristic assumption expected insertion/lookup time
+        = 1/1-alpha where alpha is load factor
+
+        in Linear probing above assumption does not satisy,
+
+        expected searching/insertion time is 1/(1-alpha)2 depends on alpha
+
+
+    3) Bloom Filter:
+        it is another data strature like hash table which is used for fast insertion and
+        searching
+
+        it also used array and family of hash function
+
+        pros over hash table
+        1) space efficient : does not store complete object just remembar it return true/false
+
+        cons :
+        1) deletion is not possible
+        2) can have false positive : return true even if object is not inserted.
+
+        in bloom filter false positive error rates depending no bits per object.
+
+        as no bits increases error rate goes down.
+
+
+
+
 
 
 
