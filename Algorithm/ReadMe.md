@@ -233,38 +233,6 @@
         see topological order program.
 
 
-# Greedy Algorithm:
-
-    greedy alogrithm is technique which choses best solution at that moment. it is choses locally optimal solution in a hope that it leads to
-    optimal solution to global problem
-
-    greedy algorithm is not always correct
-
-    it is hard proof correctness of greedy algorithm
-
-
-    when to choose greedy algorithm
-
-    if you have some objective function. you have find optimal of that objective then you can choose greedy algorithm
-    to choos optimal objective at every step
-
-    problem must contain 2 component :
-        1) problem has optimal substructure. sub problem has optimal solution which lead to optimal solution to main problem.
-        2) It has a greedy property (hard to prove its correctness!). If you make a choice that seems the best at the moment and solve the remaining sub-problems later, you still reach an optimal solution. You will never have
-          to reconsider your earlier choices.
-
-
-    for example.
-        if you want schedule job with its execution time. you have to execute many job in given time period
-        in this case can use greedy algorithm which will choose job with less execution time at each step
-
-
-    proof of correctness of greedy algorithm can be prove by proof of contradiction. you have to assume given soltution
-    is wrong there another optimal solution you have falsify that solution
-
-
-    ex. dijkstra shortest path algorithm, MST, scheduling
-
 
 #  Randomized Algorithms
 
@@ -447,6 +415,320 @@
         in bloom filter false positive error rates depending no bits per object.
 
         as no bits increases error rate goes down.
+
+
+
+# Greedy Algorithm:
+
+    greedy alogrithm is technique which choses best solution at that moment. it is choses locally optimal solution in a hope that it leads to
+    optimal solution to global problem
+
+    greedy algorithm is not always correct
+
+    it is hard proof correctness of greedy algorithm
+
+
+    when to choose greedy algorithm
+
+    if you have some objective function. you have find optimal of that objective then you can choose greedy algorithm
+    to choos optimal objective at every step
+
+    problem must contain 2 component :
+        1) problem has optimal substructure. sub problem has optimal solution which lead to optimal solution to main problem.
+        2) It has a greedy property (hard to prove its correctness!). If you make a choice that seems the best at the moment and solve the remaining sub-problems later, you still reach an optimal solution. You will never have
+          to reconsider your earlier choices.
+
+
+    for example.
+        if you want schedule job with its execution time. you have to execute many job in given time period
+        in this case can use greedy algorithm which will choose job with less execution time at each step
+
+
+
+     another example scheuling problems: if job have priority and time required for execution in this case
+     there is 3 case 1) if jobs have same priority and diff time then job with less time will execute first
+                     2) if job have diff priority and same time then job with high priority will execute first
+                     3) if job have diff priority and diff time then in this case we create scroe base on both priority and tim
+                     let say first optimal function do the difference p-t
+                     second one do the division p/t
+                     in this case 2nd will be most efficient so we will sort job according to higher weight and execute it
+
+
+    proof of correctness of greedy algorithm can be prove by proof of contradiction.
+    you have to assume given soltution is wrong there another optimal solution you have falsify that solution
+
+    for example in above scheduling problem consider there is another optimal solution
+    in that consider two job i and j and i execute first and then j  and i > j
+
+    if we exchange there scheduling then j time will decrease by i time and its cost will also goest down wjti
+    ith job time will increase by ti and it cost will be decrease as j > i
+
+    so here cost will get imporve thats why another is not optimal solution so our greedy is optimal solution
+
+    ex. dijkstra shortest path algorithm, MST, scheduling
+
+
+# MST (Minimum Spanning Tree)(Greedy algorithm):
+
+    Minimum spanning tree is minimum cost tree which have two property:
+    1) it does not have any cycle
+    2) it is will connect (for any vertex there is path to any other vertex)
+
+    there two alogrithm for minimum spanning tree
+    1) prims algorithm : prims alogrithm select vertex with optimum cost find min_cost to every adjacent vertex at each steps
+    2) kruskals algorithm: kruskal algorithm select min_cost edge and check if create cycle if not added minimum spanning tree.
+
+
+    1) prims algorithm:
+        it is similiar to dikstras shortes path algorithm
+        it choses vertex with minimum cost at every iteration
+        update it adjacent vertex cost if its minimum than in min_cost array
+        add that in mst.
+
+        time complexity of prims algorthm is same as dikstras O(v2) and using heap it is O(v+e log v)
+        time complexity of prims algorithm with min heap is O(v+e log v)
+        min heap is used to store min_cost of each vertex.
+
+
+        correctness of prims algorithms:
+        as its greedy algorithm we can prove it by contradiction
+
+        assumption that let e be the edge in graph
+        and there is cut A B then e is cheapest crossing edge that should
+        be included in minimum spanning tree
+
+        no cut lemma:
+            if there is cut A and B and there is no crossing edge then
+            graph is not connect
+
+        double cut lemma:
+            it there is 2 crossing edge which get back to same vertex then
+            there is cycle.
+
+        so in proof we assume that there is e- edge which less cheaper than e that can include in mst
+        so that cost will less than if we inclide e in mst.
+
+        so it is possible if including e create cyle in mst then we can't include e so we include e`
+        which create mst.
+
+
+
+    2) Kruskal algorithm:
+
+        it is also one of greedy algorithm for finding minimum spanning tree.
+        1) sort all edges in ascending order
+        2) iterate thorugh edge.
+        3) if edge is unvisited and does not form cycle then added to mst.
+
+        time complexity of kruskal's algorithm O(v2)
+        time complexity of kruskal's algorithm with union-find algorithm is O(v+e log v)
+        here bottleneck is to check if cycle will occure if add current edge
+        for this we can use bfs or dfs which takes linear time but union-find take constant times.
+
+
+        correctnsess of Kruskal Algorthm:
+        as it is greedy algorithm we choose as edges in ascending order every time
+        we can use proof by contradiction
+
+        first we are gonna prove kruskal algorithm output spaning tree
+        then we are gonna prove that it is mst.
+
+        1) proving it out mst : 1) it should not contain cycle 2) it is well connected
+
+        according to no cut lemma : if there is cut A,B and there is no crossing edge then graph is not well connected.
+
+        according to single cut lemma : if thers is one one edge crosses cut A,B then it should not produced cycle in graph
+
+        and in kruskal algortihm first crossing edge it sees will be included in mst
+
+        in kruskal algorithm that first edge will be cheapest as we sort edges in ascending order
+        so kruskal algorithm output minimum spanning tree.
+
+
+
+        Union-Find:
+            1) data is divided into groups
+            2) it can find object is situated in which group
+            3) it can also merge two group into single using union
+
+            so in kruskal algorithms this groups are created by linked to leader arbitary vertex in each group
+            so cycle is check is done by if both vertex have some leader if yes then cycle is exist if not then cycle is not existed
+            after adding edge we have to merge component which nothing but updating leader in one component which has less vertex.
+
+
+# Huffman Code(Greedy Algorithm):
+
+    Huffman Code is variable length prefix free binary codes algorithm for encoding characters.
+
+    so in encoding character into binary code you can used fixed bit codes in triditional algorithm but it takes more memory
+    so for efficient memory we need variable length coding for characters.
+
+    in variable length character there induces ambiguity if we dont care.
+    for example.
+            A B C D
+            0 00 1 11
+
+    if we have binary code 00011
+
+    so in this case there is more than 1 string that can decode from above binary codes
+    1) ABD 2) AAACC 3) BAD
+
+    so to resolved ambiguity in code we need prefix free codes.
+    in prefix codes character code should not start with any other value.
+    for ex.
+    A - 0
+    B - 11
+    c - 10
+    D - 001
+
+    0 11 11 10
+    A B B C
+
+    Huffman Coding Algorith for prefix free binary coding:
+
+    in huffman coding you have given string you have to produced variable length prefix free code
+    you have also given frequency of each character:
+
+    1) while there is no two character to merge:
+
+        choose least freequent two character merge them also merge there frequence
+
+    2) build a binary tree with edge 0 and 1
+
+
+    for example A B C D
+    A - 50%
+    B - 30%
+    c - 15%
+    D - 10%
+
+    1) we are going to choose least frequenct 2 character merge them there freq.
+
+
+    CD  A B
+    25  50 30
+
+    2)
+    CDB  A
+    55   50
+
+
+    3) we need consturct binary tree with o and 1 edge 0 left 1 right edge
+
+
+        node
+      0  /\ 1
+        /  \
+        A  node
+            0/\ 1
+            B node
+              0/\ 1
+              C D
+
+     A= 0  B= 10  C=110 D=111
+
+
+     time complexity is O(n2)
+     but we can use min heap data structure to get O(n log n) time
+
+
+# Dynamic Programming:
+
+    Dynamic programing is optimization over recusion. it store the solution of subproblems so if needed later we can take it from
+    there. this simple solution reducses time complexity from exponential to linear
+
+
+    Dynamic programming is algorithm paradigme which solves complext problem by dividing into smaller subproblem and storing solution
+    of subproblem to avoid computing same result again
+
+
+    if problem have can divide into subproblem and subproblem have optimal solution than we can use dynamic programming
+
+    key features of dynamic programming.
+
+    1) identfy subproblem for main problem
+
+    2) can quickly solve larger subproblem given the solution to smaller subproblem
+
+    3) after solving all subproblem can quickly compute the solution to  main problem
+
+
+    problem should have following property that suggest that problem can be solve using dynamic programming
+
+    1) overlapping subproblem
+    2) optimal substructure
+
+    overlapping subproblem :
+        dynamic programming divide complex problem into sub problem. it solve this subproblem store solution.
+        so that solution to this subproblems need again and again in dynamic programming.
+
+        if solution of subproblem is not needed than there is no use of using dynamic programming
+        fo ex. binary search does not need solution of subproblem
+
+        fib num : we need solution of last 2 num to compute current fib so we can use dynmica
+
+
+    optimal substructure :
+
+        problem have optimal substructure if optimal solution of problem can be obtain from optimal solution of subprolems
+        this same as in greedy algorithm which choose best possible solution at time in hope it leads optimal solution to
+        main problem.
+
+        ex. shortest path algorithm.
+
+
+# polynomial time problem (p) and non deterministic polynomial time problem (np complete):
+
+    polynomial time problem : it problem for which known algorithm is exist who solved it in polynomial time
+    O(n^k)   n = length of input size
+    ex. all problem sorting, searching, mst, shortest path algorithm are polynomial time algorithm
+
+
+    np complete problem : if problem for which no known algorithm is exist which solved it in polynomial
+    time is called np complete problem or non deterministic polynomial time problem.
+    ex. travelling salesman problem, knapsack problem.
+
+
+    how to determine whether problem is np complete problem.
+
+    1) reduction  and completness: reduced given problem pi to pi2
+
+    pi can be reduced to pi2 if function which solves pi2 can solved pi in polynomial time
+    but if pi2 itself is np completed then we can say that pi is also np complete problem
+
+    so if we found polynomial solution to pi then it will also solved pi2.
+
+
+    problem is np compelte prolem if:
+        1) solutions always have length polynomial in input size.
+        2) purposed solution can be verified in polynomial time.
+
+
+    approches for solving np complete problems:
+
+    1) identify computational ease for special cases or input:
+        weighted inpendant set for path graph have linear time
+        but for general graph it np complete problem
+
+    2) heuristic : proposing algorithm which is not correct but minmum.
+
+    3) exponential time but better than brute force.
+        here can use dynammic programming to solve problem which will
+        have exponential time but more correct than brute force.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
