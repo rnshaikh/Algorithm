@@ -22,7 +22,7 @@ class MergeSort:
             self.divide(left)
             self.divide(right)
             self.conquer_merge(array, left, right)
-            print("result", array)
+            print("result", array]]])
 
     def conquer_merge(self, array, left, right):
 

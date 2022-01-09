@@ -2,9 +2,6 @@
 import math
 
 
-
-
-
 def permutation(st, left, right):
 
     if left == right :

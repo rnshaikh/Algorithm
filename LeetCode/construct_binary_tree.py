@@ -25,11 +25,6 @@ algorithm:
 
 
 
-
-
-
-
-
 # Definition for a binary tree node.
 # class TreeNode:
 #     def __init__(self, val=0, left=None, right=None):
@@ -65,6 +60,7 @@ class Solution:
 
         if len(preorder) <= 1:
            return TreeNode(-1)
+
 
         head = self.build(preorder, inorder, 0, len(inorder)-1)
 
