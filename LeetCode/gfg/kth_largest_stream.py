@@ -1,5 +1,7 @@
 """
-    Given an input stream arr[] of n integers. Find the Kth largest element for each element in the stream and if the Kth element doesn't exist, return -1.
+    Given an input stream arr[] of n integers. 
+    Find the Kth largest element for each element in the stream and if the Kth element doesn't exist, 
+    return -1.
 """
 
 """
@@ -38,6 +40,5 @@ class Solution:
                 kth = heapq.heappop(min_heap)
                 ans.append(kth)
                 heapq.heappush(min_heap, kth)
-
 
         return ans

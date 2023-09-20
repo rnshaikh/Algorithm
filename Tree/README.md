@@ -67,10 +67,10 @@ Types Of Binary Tree:
 
 # Binary Search Tree:
 
-1) Binary search tree is binary tree where left subtree have value less than or equal to root and right subtree have value greater than root
+1) Binary search tree is binary tree where left subtree have value less than or equal to root and right subtree have value greater than or equal to root
 
 2) average search, insertion and deletion cost o(log n base 2) balanced binary tree best case and in worst case o(n) in unbalanced binary search tree,
-  unorder array/ linkedlist search o(n), insert o(1), deletion O(n)
+  unorder array/ linkedlist search o(n), insert o(1), deletion O(1)
 
 
 # Binary Tree Traversal:

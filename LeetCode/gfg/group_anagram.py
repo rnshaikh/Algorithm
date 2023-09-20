@@ -13,6 +13,15 @@
             hashamp[sort_word] = [word]
 
         return hashmap.values() as answer
+
+
+    or
+
+    there is 25 char from a-z
+    count char in word as tuple store in default dict in that tuple
+
+
+
 """
 
 

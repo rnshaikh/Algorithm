@@ -33,39 +33,30 @@ algorithm:
 #         self.right = right
 
 class Solution:
-
+    
     def __init__(self):
-        self.preindex = 0
+        self.prefix = 0
+    
+    def build_tree(self, preorder, inorder, start, end):
+        if self.prefix >= len(preorder):
+            return 
+        
+        if preorder[self.prefix] not in inorder[start:end+1]:
+            return
 
-    def build(self, preorder, inorder, current, inend):
-
-        if current>inend:
-            return None
-
-        node = TreeNode(preorder[self.preindex])
-        self.preindex = self.preindex + 1
-
-        if current == inend:
-            return node
-
-        index = inorder.index(node.val)
-
-
-        node.left = self.build(preorder, inorder, current, index-1)
-        node.right = self.build(preorder, inorder, index+1, inend)
-
+        val = preorder[self.prefix]
+        node = TreeNode(val)
+        self.prefix += 1
+        in_index = inorder.index(node.val)
+        
+        node.left = self.build_tree(preorder, inorder, start, in_index)
+        node.right = self.build_tree(preorder, inorder, in_index, end)
         return node
 
     def buildTree(self, preorder: List[int], inorder: List[int]) -> Optional[TreeNode]:
-
-        if len(preorder) <= 1:
-           return TreeNode(-1)
-
-
-        head = self.build(preorder, inorder, 0, len(inorder)-1)
-
-        if head:
-            return head
-
-
-
+        
+        n = len(inorder)-1
+        node = self.build_tree(preorder, inorder, 0, n)
+        return node
+    
+    

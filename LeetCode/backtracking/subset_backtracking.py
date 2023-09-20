@@ -88,3 +88,24 @@ class Solution:
                     temp.pop(-1)
 
         return ans.values()
+
+
+
+
+
+   def find(self, nums, index, queue, ans):
+
+        if len(queue) >= 0  and queue not in ans:
+            ans.append(queue[:])
+
+        for j in range(index, len(nums)):
+            queue.append(nums[j])
+            self.find(nums, j+1, queue, ans)
+            queue.pop()
+
+    def subsets(self, nums: List[int]) -> List[List[int]]:
+        ans = []
+        queue = []
+
+        self.find(nums, 0, queue, ans)
+        return ans

@@ -27,34 +27,37 @@ class Graph:
     def add_edge(self, u, v):
         self.graph[u].append(v)
 
-    def cycle_util(self, ver, visited, recurStack):
-
-        visited[ver] = True
-        recurStack[ver] = True
-
-        for neigbour in self.graph.get(ver, []):
-            if visited[neigbour] == False:
-                if self.cycle_util(neigbour, visited, recurStack) == True:
+    def dfs(self, node, visited, adj):
+        
+        visited[node] = 1
+        
+        
+        for i in adj[node]:
+            
+            if visited[i] != 1:
+                if self.dfs(i, visited, adj) == True:
                     return True
+                
             else:
                 return True
+        
+        visited[node] = 0
+        adj[node] = []
+    
+    def isCyclic(self, V, adj):
+        # code here
+        
+        visited = [0] * V
+        
+        for i in range(0, V):
+            if visited[i] != 1:
+                flag = self.dfs(i, visited, adj)
+                if flag == True:
+                    return 1
 
-        recurStack[ver] = False
-
-    def detect_cycle(self):
-
-        visited = [False] * (max(self.graph) + 10)
-        recurStack = [False] * (max(self.graph) + 10)
-
-        for i in self.graph:
-            start=i
-            break
-
-        if self.cycle_util(start, visited, recurStack) == True:
-            print("Cycle Exist")
-        else:
-            print("Cycle Not Exist")
-
+            else:
+                return 1
+        return 0
 
     def undirected_cycle_util(self, ver, visited, parent):
 

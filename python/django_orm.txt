@@ -1,0 +1,44 @@
+https://python.plainenglish.io/django-orm-examples-and-practice-problems-7896e9906855
+
+1) Books.objects.all()
+2) Books.objects.all().values('title', 'published_date')
+3) Authors.objects.filter(popularity_score=0).values('firstname', 'lastname')
+4) Authors.objects.filter(popularity_score__gte=8, firstname__startswith='A').values('firstname', 'popularity_score')
+5) Authors.objects.filter(firstname__icontains='A').values('firstname')
+6) Authors.objects.filter(id__in=[1, 3, 23, 43, 134, 25]).values('firstname')
+7) Authors.objects.filter(joindate__gte='2012-09-01').values('firstname', 'joindate')
+8) Publishers.objects.all().order_by('lastname').values_list('lastname').distinct()[:10]
+9) [Authors.objects.all().order_by('joindate').last(),
+Publishers.objects.all().order_by('-joindate').first()]
+10) Authors.objects.all().order_by('joindate').values('firstname', 'lastname', 'joindate').last()
+11) Authors.objects.filter(joindate__years__gte='2013')
+12) Authors.objects.filter(popularity_score__gte=8).aggregate(price=Sum('books__price'))
+13) Books.objects.filter(author__firstname__startwith='A').values_list('title', flat=True)
+14) Authors.objects.filter(id__in=[1, 3, 4]).aggregate(price=Sum('books__price'))
+15) Authors.objects.all().values_list('firstname', 'recommendedby__firstname')
+16) Authors.objects.filter(books__publisher__pk=1).order_by('firstname')
+17) Authors.objects.get(pk=1).followers.add([user1, user2, user3])
+18) Authors.objects.get(pk=2).followers.set(user1)
+19) Authors.objects.get(pk=1).followers.set(user1)
+20) Authors.objects.get(pk=2).followers.remove(users[0])
+21) Users.objects.filter(pk=1).followed_authors.all().values_list('firstname', flat=True)
+22) Authors.objects.filter(books__title__icontains='tle')  
+23) Authors.objects.filter(Q(firstname__istartswith='A')&(Q(popularity_score__gt=5)|Q(joindate__year__gte='2012')))
+24) Authors.objects.get(pk=1) 
+25) Authors.objects.all()[:10] 
+26) [Authors.objects.filter(popularity_score=7).last(), Authors.objects.filter(popularity_score=7).first()] 
+27) Authors.objects.filter(joindate__year__gte='2012', joindate__day__gte='12', popularity_score__gte=4, firstname__istartswith='a') 
+28) Authors.objects.filter(~Q(joindate__year='2012'))   
+29) Authors.objects.aggregate(oldest_author=Min('joindate'), latest_author=Max('joindate'), avg_popularity=Avg('popularity_score'), books_price=Sum('books__price')) 
+30) Authors.objects.filter(recommendedby__isnull=True)
+31) Books.objects.filter(Q(author__isnull=True) | Q(author__recommendedby__isnull=True))
+32) Authors.objects.filter(pk=1).aggregate(total_price=Sum('books__price'), oldest_book=Min('books__published_date'), newest__book=Max('books__published_date'))
+33) Books.objects.all().order_by('-published_date').first().title  
+34) Books.objects.aggregate(avg_price=Avg('price'))
+35) Authors.objects.get(pk=1).books_set.aggregate(max_popularity_publisher=Max('publisher__popularity_score'))
+36) Authors.objects.filter(books__title__icontains='ab').count()
+37) Authors.objects.annotate(followers_count=Count('followers', outputfield=IntegerField())).filter(followers_count__gt=26)
+38) Authors.objects.filter(joindate__gt='2012-09-20').aggregate(avg_popularity=Avg('popularity_score'))   
+39) Books.objects.annotate(book_count=Count('author__books')).filter(book_count__gt=10)  
+40) Books.objects.filter(title__in = Subquery(Books.objects.filter(title=OuterRef('title')).values_list('title', flat=True)) ) or 
+    Books.objects.all().values('title').annotate(count_title=Count('title')).filter(count_title__gt=1) 

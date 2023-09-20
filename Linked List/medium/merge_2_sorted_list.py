@@ -15,33 +15,48 @@
 def sortedMerge(head1, head2):
     # code here
 
-    temp1 = head1
-    temp2 = head2
-
-    link = LinkedList()
-
-    while(temp1!=None and temp2 != None):
-
-        if temp1.data>temp2.data:
-            link.append(temp2.data)
-            temp2=temp2.next
-        elif temp2.data>temp1.data:
-            link.append(temp1.data)
-            temp1 = temp1.next
+    new = ListNode()
+    nhead = new
+    
+    while list1 and list2:
+        
+        if list1.val <= list2.val:
+            nex1 = list1.next
+            
+            nhead.next = list1
+            nhead = nhead.next
+            nhead.next = None
+            list1 = nex1
+            
+            
         else:
-            link.append(temp1.data)
-            link.append(temp2.data)
-            temp1=temp1.next
-            temp2=temp2.next
+            nex2 = list2.next
+            
+            nhead.next = list2
+            nhead = nhead.next
+            nhead.next = None
+            
+            list2 = nex2
+            
+            
+    while list1:
+        nex1 = list1.next
+            
+        nhead.next = list1
+        nhead = nhead.next
+        nhead.next = None
+            
+        list1 = nex1
+    
+    
+    while list2:
+        
+        nex2 = list2.next
 
-    if temp1!=None:
-        while(temp1!=None):
-            link.append(temp1.data)
-            temp1=temp1.next
+        nhead.next = list2
+        nhead = nhead.next
+        nhead.next = None
 
-    if temp2!=None:
-        while(temp2!=None):
-            link.append(temp2.data)
-            temp2 = temp2.next
-
-    return link.head
+        list2 = nex2
+        
+    return new.next

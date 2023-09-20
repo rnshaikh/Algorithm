@@ -1,0 +1,22 @@
+
+procedural progmamming : in procedural progmamming we write code in terms of functions as basic unit.
+object oriented programming : in object oriented progmamming we write code in terms of object 
+which contain related data member, member function
+
+oops pillars:
+    there are four pillars to oops 
+    1) abstraction : it means showing only essential details to users and hiding trivial or non essential detail.
+                     ex. driver only know about acclerator and break button not its implementation. 
+    2) Encapsulation : it means wrapping up related data member and member function into single unit called class.
+                       so that data is protected from outside world. it is also call data hiding.
+    3) Inheritance: it provide code reusability feature. it means extending data member and member function of parent class into 
+                    new childern class.
+                    1) single Inheritance: once child class extends from one parent class
+                    3) hiearchial Inheritance : it represent grandparent, parent, child kind of relation
+                    4) multiple Inheritance: once child class extends from more than one parent class 
+    4) polymorphism : it means having many form. same function perfom different types of operation on different data.
+                      1) static polymorphism: it is nothing but method overloading where method name in is same but its
+                      signature is different. it differ in paremeter or return types
+                      2) dynamic polymorphism: it is nothing but method overiding in inheritance where we override 
+                      parent class function in childern class.
+

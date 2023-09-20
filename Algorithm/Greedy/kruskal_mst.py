@@ -4,7 +4,7 @@
 """
     algorithms
     1) we sort edges with ascending order of their weight
-    2) iterate through edges for n-1 beacuse(spanning tree will have atleast n-1 edges and mst will have n-1 edges)
+    2) iterate through edges for V-1 beacuse(spanning tree will have atleast n-1 edges and mst will have n-1 edges)
     3) if edges does not induce cycle add it into mst
     4) return mst
 
@@ -105,10 +105,69 @@ if __name__ == "__main__":
 
 
 
-
-
-
-
-
-
-
+class Solution:
+    
+    #Function to find sum of weights of edges of the Minimum Spanning Tree.
+    
+    def find_leader(self, leader, i):
+        
+        if leader[i] != i:
+            leader[i] = self.find_leader(leader, leader[i])
+        return leader[i]
+    
+    def union(self, leader, rank, u, v):
+        
+        if rank[u] < rank[v]:
+            
+            leader[u] = v
+            
+        elif rank[v] < rank[u]:
+            leader[v] = u
+        else:
+            leader[v] = u
+            rank[u]+=1
+    
+    def spanningTree(self, V, adj):
+        #code here
+        
+        n = len(adj)
+        edges = []
+        hash_map = {}
+        
+        for i in range(n):
+            for j in adj[i]:
+                if (i, j[0]) not in hash_map and (j[0], i) not in hash_map:
+                    edges.append([i, j[0], j[1]])
+                    hash_map[(i, j[0])]=1
+                    hash_map[(j[0], i)]=1
+        
+        edges = sorted(edges, key=lambda item: item[2])
+    
+        leader = []
+        rank = []
+        
+        for i in range(V):
+            leader.append(i)
+            rank.append(0)
+        
+        result = []
+        i = 0
+        e = 0
+        
+        while e < V - 1:
+            u,v,w = edges[i]
+            i = i+1
+            leader_u = self.find_leader(leader, u)
+            leader_v = self.find_leader(leader, v)
+            
+            if leader_u != leader_v:
+                result.append([u,v,w])
+                self.union(leader, rank, leader_u, leader_v)
+                e = e+1
+                
+        
+        minimum_cost = 0
+        for u,v,w in result:
+            minimum_cost += w
+    
+        return minimum_cost

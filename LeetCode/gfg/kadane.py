@@ -23,7 +23,7 @@ class Solution:
         ##Your code here
 
         max_end_here = 0
-        max_sum = arr[0]
+        max_sum = float('-inf')
 
         for i in range(N):
 

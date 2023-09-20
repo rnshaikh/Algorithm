@@ -1,8 +1,6 @@
-
-
 """
-Given a string columnTitle that represents the column title as appear in an Excel sheet, return its corresponding column number.
-
+Given a string columnTitle that represents the column title as appear in an Excel sheet, 
+return its corresponding column number.
 """
 
 """
@@ -18,10 +16,6 @@ ZY =  26* 26 + 25* 1 = 701
 CDA = 3*(26*26) + 4 * (26) + 1 * (1) = 2133
 
 """
-
-
-
-
 
 class Solution:
     def titleToNumber(self, columnTitle: str) -> int:

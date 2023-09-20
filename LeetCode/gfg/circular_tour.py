@@ -44,7 +44,8 @@ Therefore, return 3 as the starting index.
 
 
 
-
+{'AECO': 5, 'HOUSTON': 4, 'JCPL': 6, 'NORTH': 1, 'PSEG': 7, 'SOUTH': 2, 'WEST': 3}  
+{'RT': 1, 'DA': 2}
 
 class Solution:
 

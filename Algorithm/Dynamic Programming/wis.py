@@ -2,7 +2,8 @@
 
 #Algorithm
 """
-    optimal solution : there 2 case if current vertex is part of is. if it then wis[i-2] + weight of current vertex is independant set of
+    optimal solution : there 2 case if current vertex is part of is. if it then wis[i-2] + weight 
+    of current vertex is independant set of
     current else if current vertex is not part of independant set then wis[i-1] is i.s. of current of vertex
 
     we take max of above case

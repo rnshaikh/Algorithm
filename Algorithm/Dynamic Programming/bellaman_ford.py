@@ -102,3 +102,33 @@ if __name__ == "__main__":
 
 
 
+
+
+isNegativeWeightCycle(n,edges){
+       //code here
+       
+        if(!edges.length){
+            return 0
+        }
+        
+        
+        let dist = new Array(n).fill(Number.POSITIVE_INFINITY)
+        dist[0] = 0
+        for(let i = 0 ; i <= n-1; i++){
+           if(i < edges.length){
+               let[u, v, w] = edges[i]
+               
+               if (dist[u] != Number.POSITIVE_INFINITY && dist[v] > dist[u]+w){
+                   dist[v] = dist[u]+w
+               }
+           }
+        }
+        
+        for (let ele of edges){
+            let [u, v, w] = ele
+            if (dist[v] != Number.POSITIVE_INFINITY && dist[v] > dist[u]+w){
+                return 1
+            }
+        }
+        
+        return 0

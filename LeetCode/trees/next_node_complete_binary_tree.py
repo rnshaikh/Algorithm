@@ -1,7 +1,9 @@
 # Definition for a Node.
 
 """
-you are given a perfect binary tree where all leaves are on the same level, and every parent has two children. The binary tree has the following definition:
+you are given a perfect binary tree where all leaves are on the same level, 
+and every parent has two children. 
+The binary tree has the following definition:
 
 struct Node {
   int val;
@@ -24,7 +26,6 @@ class Node:
         self.next = next
 
 class Solution:
-
 
     def recur(self, node):
 

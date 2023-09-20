@@ -43,3 +43,44 @@ class Solution:
             prod_ans[i] = prefix[i]*suffix[i]
 
         return prod_ans
+
+
+def productExceptSelf(self, nums: List[int]) -> List[int]:
+        
+        prod = [[1,1] for _ in range(len(nums))]
+
+        for i in range(1, len(nums)):
+            
+            prod[i][0] = nums[i-1] * prod[i-1][0]
+            
+        
+        for j in range(len(nums)-2, -1, -1):
+            
+            prod[j][1] = nums[j+1] * prod[j+1][1]
+        
+        
+        for i in range(len(nums)):
+            prod[i] = prod[i][0] * prod[i][1]
+        
+        
+        return prod
+
+
+
+
+
+
+/// o(1) space 
+        ans = [1  for _ in range(n)]
+        pref = 1
+        suff = 1
+
+        for i in range(n):
+
+            ans[i] = ans[i] * pref
+            pref = pref*nums[i]
+            
+            ans[n-i-1] = ans[n-i-1] * suff
+            suff = suff * nums[n-i-1]
+        
+        return ans

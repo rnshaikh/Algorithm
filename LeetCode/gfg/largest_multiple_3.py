@@ -1,13 +1,17 @@
 """
-    Given an array of digits digits, return the largest multiple of three that can be formed by concatenating some of the given digits in any order. If there is no answer return an empty string.
+    Given an array of digits digits, return the largest multiple of three that 
+    can be formed by concatenating some of the given digits in any order. 
+    If there is no answer return an empty string.
 
-    Since the answer may not fit in an integer data type, return the answer as a string. Note that the returning answer must not contain unnecessary leading zeros.
+    Since the answer may not fit in an integer data type, return the answer as a string. 
+    Note that the returning answer must not contain unnecessary leading zeros.
 
 """
 
 
 """
- We have discussed a queue based solution. Both solutions (discussed in previous and this posts) are based on the fact that a number is divisible by 3 if and only if sum of digits of the number is divisible by 3.
+ We have discussed a queue based solution. Both solutions (discussed in previous and this posts) are based on 
+ the fact that a number is divisible by 3 if and only if sum of digits of the number is divisible by 3.
 For example, let us consider 555, it is divisible by 3 because sum of digits is 5 + 5 + 5 = 15, which is divisible by 3. If a sum of digits is not divisible by 3 then the remainder should be either 1 or 2.
 If we get remainder either ‘1’ or ‘2’, we have to remove maximum two digits to make a number that is divisible by 3:
 
