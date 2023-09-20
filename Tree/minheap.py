@@ -20,7 +20,6 @@ class MinHeap:
 
         return self.heap[0]
 
-
     def extractMin(self):
         num = heappop(self.heap)
         print("extrct func",self.heap)

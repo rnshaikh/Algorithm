@@ -127,3 +127,77 @@ class Codec:
 # ser = Codec()
 # deser = Codec()
 # ans = deser.deserialize(ser.serialize(root))
+
+
+
+
+
+
+
+
+
+
+# just using proeorder
+
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Codec:
+
+    def __init__(self, str_tr=""):
+        self.str_tr = ""
+        self.preindex = 0
+
+    def pre_order(self, root):
+
+        if not root:
+            self.str_tr += "N" + ","
+            return
+
+        self.str_tr = self.str_tr + str(root.val)+","
+        self.pre_order(root.left)
+        self.pre_order(root.right)
+
+    def serialize(self, root):
+        """Encodes a tree to a single string.
+
+        :type root: TreeNode
+        :rtype: str
+        """
+
+        self.pre_order(root)
+        return self.str_tr
+
+
+    def deserialize(self, data):
+        """Decodes your encoded data to tree.
+
+        :type data: str
+        :rtype: TreeNode
+        """
+        preorder = data.split(",")
+        preorder.pop(-1)
+
+        self.preindex = 0
+
+        def dfs():
+
+            if self.preindex >= len(preorder):
+                return
+
+            if preorder[self.preindex] == 'N':
+                self.preindex += 1
+                return
+
+            node = TreeNode(preorder[self.preindex])
+            self.preindex += 1
+            node.left = dfs()
+            node.right = dfs()
+            return node
+
+        node = dfs()
+        return node

@@ -8,9 +8,7 @@ Recusive:
     3) check if temp.data>head: retrun temp to its previous nod
     4) else link that node to head (previous node) head.next = temp
     5) return head to previous nod
-
-
-
+    
     1) check if temp and temp.next is not None otherwise return head
     2) initate temp and prev
     3) traverse until temp.next is none

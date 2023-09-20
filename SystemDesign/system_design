@@ -1,0 +1,136 @@
+1) Horizontal Scaling and Vertical Scaling:
+
+1. Vertical Scaling
+    In simple terms upgrading the capacity of a single machine or moving to a new machine with more power is called vertical scaling. You can add more powers to your machine by adding better processors, increasing RAM, or other power increasing adjustments. Vertical scaling can be easily achieved by switching from small to bigger machines but remember that this involves downtime. You can enhance the capability of your server without manipulating your code. 
+
+    This approach is also referred to as the ‘scale-up‘ approach.
+    It doesn’t require any partitioning of data and all the traffic resides on a single node with more capacity.
+    Easy implementation.
+    Less administrative efforts as you need to manage just one system.
+    Application compatibility is maintained.
+    Mostly used in small and mid-sized companies.
+    MySQL and Amazon RDS is a good example of vertical scaling.
+    
+    
+    Drawbacks
+
+    Limited Scaling.
+    Limited potential for improving network I/O or disk I/O.
+    Replacing the server will require downtime in this approach.
+    Greater risk of outages and hardware failures.
+    Finite scope of upgradeability in the future.
+    Implementation cost is expensive.
+
+
+
+2. Horizontal Scaling
+    
+    This approach is the best solution for projects which have requirements for high availability or failover. In horizontal scaling, we enhance the performance of the server by adding more machines to the network, sharing the processing and memory workload across multiple devices. We simply add more instances of the server to the existing pool of servers and distribute the load among these servers. In this approach, there is no need to change the capacity of the server or replace the server. Also, like vertical scaling, there is no downtime while adding more servers to the network. Most organizations choose this approach because it includes increasing I/O concurrency, reducing the load on existing nodes, and increasing disk capacity. 
+
+    This approach is also referred to as the ‘scale-out’ approach.
+    Horizontal scalability can be achieved with the help of a distributed file system, clustering, and load–balancing.
+    Traffic can be managed effectively.
+    Easier to run fault-tolerance.
+    Easy to upgrade
+    Instant and continuous availability.
+    Easy to size and resize properly to your needs.
+    Implementation cost is less expensive compared to scaling-up
+    Google with its Gmail and YouTube, Yahoo, Facebook, eBay, Amazon, etc. are heavily utilizing horizontal scaling.
+    Cassandra and MongoDB is a good example of horizontal scaling.
+    
+    Drawbacks
+
+    Complicated architectural design
+    High licensing fees
+    High utility costs such (cooling and electricity)
+    The requirement of extra networking equipment such as routers and switches.
+
+
+2) Load Balancing : Hardware 2)Software: 1) transport layer (ip, port) faster, secure
+                                         2) Application Layer (complete request) less secure, slower
+
+                                         1) policy: Round Robin, 2) weighted roundrobin 3)least connection weighted round robin
+                                         
+                                         2) stateful system : consistent hashing
+                                         consistent hashing : let data is store within application server. then how load balancer can
+                                         route to correct servers.
+                                         consistent hash ring is precomputed larger numbers in ring and server are placed on ring
+                                         and range number between to server is given in clockwise next server if new server is added 
+                                         on ring then we have replicate part key's which now part of new server to that server itsself.
+
+                                         server's list and its number range store in some co-ordination server like zookeeper.
+                                          
+
+
+3) stateful system vs stateless system:
+    stateful system store context and state information so response might differ from different server
+        chatbot- user request for nearby resaturant server one calculate store in memory and return response. in next
+        request user chooses 3 restaurant in list give request to other server but that server does not know previous request context. 
+        this solved by adding data layer before application server.
+    
+    stateless system does not store context and state information so return same response for same query from different server
+        calulating addition of two number = stateless any server is equally favourable to give correct response
+    
+
+
+3) Caching :
+    1) eviction policy: 1) LRU 2) FIFO 3) MRU 4)LFU  
+    2) Write policy: 1) write through : In write-through, data is simultaneously updated to cache and memory. This process is simpler and more reliable. This is used when there are no frequent writes to the cache(The number of write operations is less).  
+                     2) Write Around : Here data is Directly written/updated to the main memory without disturbing the cache. It is better to use this when the data is not immediately used again.
+                     3) Write Back: The data is updated only in the cache and updated into the memory at a later time. Data is updated in the memory only when the cache line is ready to be replaced (cache line replacement is done using Belady’s Anomaly, Least Recently Used Algorithm, FIFO, LIFO, and others depending on the application). 
+
+
+
+4) HLD vs LLD:
+
+    HLD : describes overall architecture of system. focuses on high level componenet and their interaction between them. convert client requirement to overall architecture of application
+    LLD : describes component level design. expressed detail description of each component or module. foucses on class, how many abstraction are their, data flow between
+    different classes and objects. it converts hld to detail explanation of each component.
+
+    it has 3 stages: 1) clarify and gather requirements 2)create Class diagram, Use Case Diagram, Schema Diagram 3) buisness logic and code
+
+
+System Design Stages:
+
+1) Clarify and Gather Requirements (functional requirements) 2-min
+2) Estimate Scale (performance requirement) = 3-4 min:
+    1) How many daily user's are going to use.
+    2) storage requirement. -- find out how many machine is required.
+    3) what will be TPS / QPS (transaction per sec) or (query per sec)
+
+3) Design Goals (CAP) (design tradeoff/ choices):
+    1) is latency is required
+    2) is consistency vs availibility required.
+
+3) Design For single Server:
+    1) DB Schema
+    2) API Design
+    3) Buisness Logic
+
+4) Scale for numbers estimated in estimate scale and performance requirement stage:
+
+    discuss design for scale that we have given in esitate scale or performance requirement.
+
+
+A design pattern provides a general reusable solution for the common problems that occur in software design.
+The pattern typically shows relationships and interactions between classes or objects.
+The idea is to speed up the development process by providing well-tested, proven development/design paradigms.
+Design patterns are programming language independent strategies for solving a common problem.
+That means a design pattern represents an idea, not a particular implementation.
+By using design patterns, you can make your code more flexible, reusable, and maintainable.
+
+
+Creational
+These design patterns used forclass instantiation or object creation.
+These patterns can be further categorized into Class-creational patterns and object-creational patterns.
+Creational design patterns are the Factory Method, Abstract Factory, Builder, Singleton, Object Pool, and Prototype
+
+
+Structural
+These design patterns are about organizing different classes and objects to form larger structures and provide new functionality.
+Structural design patterns are private class member, Adapter, Bridge, Composite, Decorator, Proxy.
+
+
+Behavioral
+Behavioral patterns are about identifying common communication patterns between objects and realizing these patterns.
+Behavioral patterns are Iterator, Observer, Template method, Chain of responsibility, Command, Interpreter, stratergy, state

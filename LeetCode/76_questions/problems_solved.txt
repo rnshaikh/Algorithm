@@ -1,0 +1,59 @@
+
+Sum of Two Integers --- sum_a = a exor b and carry = a & b and left shif carry by 1  for b b=carry<<1
+Number of 1 Bits ---  do logical & with previous num  n = (n & n-1) it unset rightmost set bit and count this until n becomes 0
+Reverse Bits --- 32 bit take i bit use right shift logical and 1 and place that bit in 31 to 0 using left shift by 31-i and logical or res
+
+
+1) kadane algorithm - maximum sum subarray (contagious)
+2) Find Minimum in Rotated Sorted Array :  find pivot element in rotated break into  two sorted list find minimum  for binary search if mid <= low then search in first half else 2nd half
+
+3) climbing stairs = dynamic progmamming(fibonacci series) : for every pos two way to reach taking 1 step or taking 2 step n-1 + n-2
+4) coin change = dynamic programming fewest coin to reach given amount : for 0 amount 0 coin required for 1 to amount+1 if i - j >= 0 then dp[i] = min(dp[i], 1+dp[i-j])
+5) longest common subsequence = dynamic progaming last character is match then i, j = 1+i-1,j-1 else i,j is max(i-1,j, i,j-1)
+6) House Robber = dynamic progaming find for every element max(dp[i-1], dp[i-2]+current element) no adjacent house.
+7) Word Break = dynamic progaming traverse from start if dp[start] not 1 conintue end from start+1, to n+1 check if word in dict if yes dp[end] = 1 marked word end. dp used to marked end of word
+Combination Sum     = dfs with backtracking start from 0 element append in curr then dfs with same index if find ans append in ans retrun curr.pop and call dfs with total , i+1
+8) houser robber2 = use house robber for 1 to last element and use house robber 1 for 0 to 2nd last element return max
+9) Decode Ways = dp with single variable encode_char.py
+10) Unique Paths = dp for first row and coloumn only 1 way we can reach. for 1 to m+1 and 1 to n+1 col  dp[i][j] = addition way for top and right i,j-1 and i-1,j
+11) Jumps Game: greedy end_pos = last post first  start from 2nd last to 0 check if i+nums[i] >= end_pos then update end_pos = i if end_pos=0 return True else false
+
+12) Clone Graph : dfs with hashmap for storing visited nodes
+13) course schedule : dfs with detect cycle
+14) no of islands : dfs
+15) merge intervals: do sorting using merge sort then take stack append first element , traverse through 1 to last check if 2nd of stack top lest than 1 element of current then append current elsif 2nd element of stack top < 2nd update
+                     pop and append new interval
+
+    insert interval : check if interval comes befor curent interval if yes then append in result return
+                     all next interval if interval first element greater than curr 2nd append current 
+                     else take min of 1st and max 2nd append in result return result
+
+16) reverse linked list: tak prev curr next update curr pointer to prev update prev as curr and curr as next until curr is not none return prev
+
+17) Detect Cycle in a Linked List: tak slow and fast pointer fast pointer jump two while slow pointer jump one if ther get equal there is cycle else return false
+
+18) matrix zero:  mark first cell of row and col which are zero flag if zero_row and col is zero or not then traverse throug row 1 to n mark zero if its and col 0 to n mark and last if zero_row is true mark row zero true
+19) word search in matrix : dfs + backtracking
+20) valid anagram : sort two string and check or count char in hashmap in 1 decrement count for other string
+21) valid parenthesis : push opening brackets in stack , pop matching closing brackets if on top else return false, at end stack empty return True else false
+22) Valid Palindrome : lowercase string. two pointer check if alnum if not increment compare alnum if equal incrment else return false. in end return True
+23) group anagram : either sort char in string and append in hashmap or count[26] char in string add tuple as key in hashmap
+24) Longest Palindromic Substring: foreach char in str, consider it were the middle, consider if pali was odd or even;       for dp create 2 d table start last if i-j > max_lenght update i=j 1 if i = j j-i =1 then 1 else dp[i+1][j-1] ommit curr i and j
+25) Palindromic Substrings : same as longest palindromic string, each char in str as middle and expand outwards, do same for pali of even len; maybe read up on manachers alg
+26) length longest substrings without repeating chars : sliding window, if we see same char twice within curr window, shift start position  used sets for checking duplicates;
+27) Longest Repeating chars replacement : PAY ATTENTION: limited to chars A-Z; for each capital char, check if it could create the longest repeating substr, use sliding window to optimize; check if windowlen=1 works, if yes, increment len, if not, shift window right;
+
+28) depth of bianry tree : recusively find max height of left and right + 1 and depth = height+1
+29) Same Tree: recursive dfs on both trees at the same time; iterative bfs compare each level of both trees
+30) Invert/Flip Binary Tree: pre_order traversal , exechange left and right
+31) Subtree of Another Tree : level order traversal with check identical tree. traverse s to check if any subtree in s equals t
+32) Level order traversal bt : iterative bfs, add prev level which doesn't have any nulls to the result;
+33) Construct Binary Tree from Preorder and Inorder Traversal = in preorder first is root and inorder left part left subtree and right part is right subtree
+34) Validate Binary Search Tree = inorder traversal with boundary left and right for each node when call with left update right boundry and when call right update left boundary
+35) Kth Smallest Element in a BST = inorder traversal with k=k-1 if k== 0 return val
+
+36) merge k sorted list: use minheap to store value of current node and index in list.  first create single list with val. sort it and create linkelist with elements.
+37) Binary Tree Maximum Path Sum : helper returns maxpathsum without splitting branches, inside helper we also update maxSum by computing maxpathsum WITH a split;
+38) Serialize and Deserialize Binary Tree: consturct preorder and inorder string and deserilazer build tree using preorder and inorder  and
+                                            in 2nd sol construct string with level wise with None for no child complete binary tree. add non none node in queeue and dequeu it and next 2 node is his child
+39) Find Median from Data Stream: max heap to store 1st half. min heap to store 2n half. all element in max heap should be less than min heap and difference of len should not be more than 1.

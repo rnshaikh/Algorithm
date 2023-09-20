@@ -24,11 +24,6 @@ Expected Auxiliary Space: O(1)
 
         else:
             append element from curr2
-
-
-
-
-
 """
 
 
@@ -117,3 +112,68 @@ def reorderList(self):
             curr2 = temp
 
         i = not i
+
+
+
+
+
+class Solution:
+    
+    def find_mid(self, node):
+        
+        curr = node
+        step = node
+        
+        while step and step.next:
+            
+            curr = curr.next
+            step = step.next.next
+        
+        return curr
+        
+        
+    def reverse(self, node):
+        
+        prev = None
+        curr = node
+        nex = None
+        
+        while curr:
+            
+            nex = curr.next
+            curr.next = prev
+            
+            prev = curr
+            curr = nex
+            
+            
+        return prev
+    
+    def reorderList(self, head: Optional[ListNode]) -> None:
+        """
+        Do not return anything, modify head in-place instead.
+        """
+        
+        curr1 = head
+        mid = self.find_mid(curr1)
+        
+        curr2 = mid.next
+        curr2 = self.reverse(curr2) 
+        mid.next  = None
+        
+        
+        i = True
+        
+        
+        while curr1 and curr2:
+            
+            if i:
+                temp = curr1.next
+                curr1.next = curr2
+                curr1 = temp
+            else:
+                temp = curr2.next
+                curr2.next = curr1
+                curr2 = temp
+            
+            i = not i

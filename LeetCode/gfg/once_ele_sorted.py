@@ -1,5 +1,12 @@
+"""
+You are given a sorted array consisting of only integers where every element appears exactly twice, 
+except for one element which appears exactly once.
 
+Return the single element that appears only once.
 
+Your solution must run in O(log n) time and O(1) space.
+
+"""
 
 """
 
@@ -12,8 +19,11 @@ Xor of arr can give solution
 
 
 binary search
-An Efficient Solution can find the required element in O(Log n) time. The idea is to use Binary Search. Below is an observation on the input array.
-All elements before the required have the first occurrence at even index (0, 2, ..) and the next occurrence at odd index (1, 3, …). And all elements after the required elements have the first occurrence at an odd index and the next occurrence at an even index.
+An Efficient Solution can find the required element in O(Log n) time. The idea is to use Binary Search. 
+Below is an observation on the input array.
+All elements before the required have the first occurrence at even index (0, 2, ..) and 
+the next occurrence at odd index (1, 3, …). And all elements after the required elements have the 
+first occurrence at an odd index and the next occurrence at an even index.
 1) Find the middle index, say ‘mid’.
 2) If ‘mid’ is even, then compare arr[mid] and arr[mid + 1]. If both are the same, then the required element after ‘mid’ and else before mid.
 3) If ‘mid’ is odd, then compare arr[mid] and arr[mid – 1]. If both are the same, then the required element after ‘mid’ and else before mid.
@@ -54,3 +64,30 @@ class Solution:
 
         res = arr[0]
         return self.divide(arr, 0, len(arr)-1)
+    
+
+
+    class Solution:
+        def findOnce(self,arr : list, n : int):
+            # Complete this function
+            
+            start = 0 
+            end = n-1
+            
+            while start < end:
+                
+                mid = (start + end) // 2
+            
+                if mid % 2 == 0:
+                    
+                    if arr[mid] == arr[mid+1]:
+                        start = mid+1
+                    else:
+                        end = mid
+                else:
+                    if arr[mid] == arr[mid-1]:
+                        start = mid+1
+                    else:
+                        end = mid
+                        
+            return arr[start]

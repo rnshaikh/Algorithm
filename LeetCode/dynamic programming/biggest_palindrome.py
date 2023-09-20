@@ -19,6 +19,62 @@
 
 
 
+"""
+
+    traverse from sirst to last
+
+    in traverse:
+        for even length
+        l= i r = i
+        consider curr char as mid element
+        go outside in both direction check pallin drome check length update length and start and end point
+
+        for odd length
+        l = i r = i+1
+        everthing is same
+
+"""
+
+
+class Solution:
+    def longestPalindrome(self, st: str) -> str:
+
+        n = len(st)
+        max_length = -1
+        start = 0
+        end = 1
+        for i in range(n):
+
+            l = i
+            r = i
+            while l>= 0 and r < n and st[l] == st[r]:
+                if (r-l+1) > max_length:
+                    max_length = (r-l+1)
+                    start = l
+                    end = r+1
+                l = l-1
+                r = r+1
+
+            l = i
+            r = i+1
+            while l>=0 and r<n and st[l] == st[r]:
+                if(r-l+1) > max_length:
+                    max_length = (r-l+1)
+                    start = l
+                    end = r+1
+                l = l-1
+                r = r+1
+
+
+        return st[start:end]
+
+
+
+
+
+# https://iq.opengenus.org/longest-palindromic-substring-dp/
+
+
 class Palindrome:
 
     def __init__(self):

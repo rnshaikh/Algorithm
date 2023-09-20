@@ -19,7 +19,8 @@ if weight is negative dijkstras algorithm won't work
 
     if we used minheap running time will be O(v+e log v)
     Following are the detailed steps.
-        1) Create a Min Heap of size V where V is the number of vertices in the given graph. Every node of min heap contains vertex number and distance value of the vertex.
+        1) Create a Min Heap of size V where V is the number of vertices in the given graph. 
+        Every node of min heap contains vertex number and distance value of the vertex.
         2) Initialize Min Heap with source vertex as root (the distance value assigned to source vertex is 0). The distance value assigned to all other vertices is INF (infinite).
         3) While Min Heap is not empty, do following
         …..a) Extract the vertex with minimum distance value node from Min Heap. Let the extracted vertex be u.
@@ -81,3 +82,32 @@ if __name__ == "__main__":
         [0, 0, 2, 0, 0, 0, 6, 7, 0]
         ];
     print(gr.dijkstras(0))
+
+
+def networkDelayTime(self, times: List[List[int]], N: int, K: int) -> int:
+        
+        graph = collections.defaultdict(dict)
+        
+        for frm, to, cost in times:
+            graph[frm][to] = cost
+        
+        distances = { i: float("inf") for i in range(1, N+1)}
+        distances[K] = 0
+        min_dist = [(0,K)]
+        visited = set()
+
+        while min_dist:
+            
+            cur_dist, cur = heapq.heappop(min_dist)
+            if cur in visited: continue
+            visited.add(cur)    
+            
+            for neighbor in graph[cur]:
+                if neighbor in visited: continue
+                this_dist = cur_dist + graph[cur][neighbor]
+                if this_dist  < distances[neighbor]:
+                    distances[neighbor] = this_dist
+                    heapq.heappush(min_dist, (this_dist, neighbor))
+            
+        if len(visited) != len(distances): return -1
+        return distances[max(distances,key=distances.get)]

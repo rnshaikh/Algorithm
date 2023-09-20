@@ -52,6 +52,5 @@ class Solution:
                 right = mid
             elif (mid*mid) < x:
                 left = mid+1
-
-
+        
         return left-1

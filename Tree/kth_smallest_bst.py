@@ -23,3 +23,27 @@ class Solution:
             return -1
 
         return res[K-1]
+
+
+class Solution:
+
+    def inorder(self, node):
+        global k;
+
+        if not node:
+            return None
+
+        val = self.inorder(node.left, k)
+        if val != None:
+            return val
+
+        if k == 1:
+            return node.val
+        k = k-1
+        return self.inorder(node.right, k)
+
+    def kthSmallest(self, root: Optional[TreeNode], k: int) -> int:
+
+        k = k
+        val = self.inorder(root)
+        return val

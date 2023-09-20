@@ -93,3 +93,98 @@ if __name__ == "__main__":
 
 
 
+
+class Solution:
+
+    def __init__(self):
+        self.ans = []    
+    
+    def is_safe(self, board, row, col):
+        
+        n = len(board)
+        for i in range(0, n):
+            if board[i][col] == 1:
+                return False
+        
+        for j in range(0, n):
+            if board[row][j] == 1:
+                return False
+        
+        i = row
+        j = col
+
+        while i < n and j < n:
+            if board[i][j] == 1:
+                return False
+            i = i+1
+            j = j+1
+
+        i = row
+        j = col
+        while i >= 0 and j >= 0:
+            if board[i][j] == 1:
+                return False
+            i = i-1
+            j = j-1
+        
+        i = row
+        j = col 
+
+        while i < n and j >= 0:
+            if board[i][j] == 1:
+                return False
+            i = i+1
+            j = j-1
+        
+        i = row
+        j = col
+
+        while i >= 0 and j < n:
+            if board[i][j] == 1:
+                return False
+            i = i-1
+            j = j+1
+        
+        return True
+
+
+    def dfs(self, board, row, col, n):
+        
+        if n == 0:
+            self.ans.append(copy.deepcopy(board))
+            return True
+        
+        if col >= len(board):
+            row += 1
+            col = 0
+        
+        if row >= len(board):
+            return False
+
+        if self.is_safe(board, row, col):
+            board[row][col] = 1
+            self.dfs(board, row, col, n-1)
+            board[row][col] = 0
+
+        self.dfs(board, row, col+1, n)
+
+
+    def solveNQueens(self, n: int) -> List[List[str]]:
+
+        board = [[0 for _ in range(n)] for _ in range(n)]
+        self.dfs(board, 0, 0, n)
+        
+        solutions = []
+        for bo in self.ans:
+            sols = []
+            for i in range(n):
+                st = ""
+                for j in range(n):
+                    if bo[i][j] == 0:
+                        st += "."
+                    else:
+                        st +="Q"
+                sols.append(st)
+            solutions.append(sols)    
+        return solutions
+        

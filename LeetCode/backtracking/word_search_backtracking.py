@@ -1,7 +1,8 @@
 
 
 """
-Given an m x n grid of characters board and a string word, return true if word exists in the grid.
+Given an m x n grid of characters board and a string word, 
+return true if word exists in the grid.
 The word can be constructed from letters of sequentially adjacent cells, where adjacent cells are horizontally or vertically neighboring. The same letter cell may not be used more than once.
 """
 
@@ -65,3 +66,17 @@ class Solution:
 
         flag = self.find_puzzle(board, m, n, 0, 0, word, len(word), 0)
         return flag
+        or 
+
+        "you find first word in board call dfs with i,j as current row"
+        for i in range(m):
+            for j in range(n):
+                if board[i][j] == word[0]:
+                    self.dfs(board,word,i,j,m,n,0) 
+                    if self.flag:
+                        return True
+
+        if self.flag:
+            return True
+        else:
+            return False

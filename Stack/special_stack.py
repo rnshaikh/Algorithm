@@ -35,7 +35,7 @@ def isFull(n, arr):
 def isEmpty(arr):
     #Code here
 
-    if len(arr)>=0:
+    if len(arr)>0:
         return True
     else:
         return False

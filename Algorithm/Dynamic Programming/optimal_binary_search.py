@@ -1,7 +1,8 @@
 
 
 """
-    input we have given nodes and its frequency of search we have construct binary search tree with minimum average frequency per search
+    input we have given nodes and its frequency of search 
+    we have construct binary search tree with minimum average frequency per search
 
     ex. 1,2,3,4    frequency : 60%, 20%, 15%, 5%
 

@@ -1,5 +1,6 @@
 
-# knight walk = knight start and target position is given we have to find minimum steps knight can take to reach target postion.
+# knight walk = knight start and target position
+#  is given we have to find minimum steps knight can take to reach target postion.
 
 """
     here we use BFS :
@@ -56,3 +57,4 @@ class Solution:
                     visited[x][y] = True
                     pos = cell(x, y, curr.dist+1)
                     queue.append(pos)
+

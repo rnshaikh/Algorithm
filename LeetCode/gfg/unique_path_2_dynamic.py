@@ -71,3 +71,52 @@ class Solution:
 
 
         return ans_grid[m-1][n-1]
+
+
+
+class Solution:
+    def uniquePathsWithObstacles(self, obstacleGrid: List[List[int]]) -> int:
+        
+        
+        n = len(obstacleGrid)
+        m = len(obstacleGrid[0])
+        
+        dp = [[0 for _ in range(m)] for _ in range(n)]
+        
+        
+        is_obstacle = 0
+        for i in range(m):
+            if obstacleGrid[0][i] == 1:
+                is_obstacle = 1
+                dp[0][i] = 0
+                continue
+                
+            if is_obstacle:
+                dp[0][i] = 0
+            else:
+                dp[0][i] = 1
+                
+        is_obstacle = 0
+        for j in range(n):
+            if obstacleGrid[j][0] == 1:
+                is_obstacle = 1
+                dp[j][0] = 0
+                continue
+            
+            if is_obstacle:
+                dp[j][0] = 0
+            else:
+                dp[j][0] = 1
+        
+        
+        for i in range(1, n):
+            for j in range(1, m):
+                
+                if obstacleGrid[i][j] == 1:
+                    dp[i][j] = 0
+                    
+                else:
+                    dp[i][j] = dp[i-1][j] + dp[i][j-1]
+        
+        
+        return dp[n-1][m-1]

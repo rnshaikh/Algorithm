@@ -1,6 +1,4 @@
 
-
-
 # Graph
 
     1) Graph is order pair of a set of vertices or node V and set of edges E
@@ -25,7 +23,7 @@
 
     |E| <= 0 <= n(n-1)
 
-    3) In undirected Graph there can be maximum n(n-1) no of edges where n is vertices
+    3) In undirected Graph there can be maximum n(n-1)/2 no of edges where n is vertices
     |n| = 4
     |E| <= 0 <= n(n-1)/2
 
@@ -50,6 +48,9 @@
     13) acyclic graph : graph called acyclic if there is no cycle in graph.
 
     14) complete graph : a simple undirected graph in which every pair of distinct vertices is connected by a unique edge.
+
+    15) hamiltonian path : path in graph that visits each vertex exactly once.
+    
 
 
 
@@ -80,6 +81,6 @@
     2) finding path between 2 vertices
     4) Shortest Path and Minimum Spanning Tree for unweighted graph
     5) Peer to Peer Networks:In Peer to Peer Networks like BitTorrent, Breadth First Search is used to find all neighbor nodes.
-    6)  GPS Navigation systems: Breadth First Search is used to find all neighboring locations.
+    6) GPS Navigation systems: Breadth First Search is used to find all neighboring locations.
 
 

@@ -55,7 +55,7 @@ class selQuick:
 
         if correct_pivot_index < ith:
             return self.partition(array[correct_pivot_index:end],
-                           correct_pivot_index,end, ith-correct_pivot_index)
+                                  correct_pivot_index,end, ith)
 
         if correct_pivot_index > ith:
             return self.partition(array[start:correct_pivot_index],start, correct_pivot_index, ith)

@@ -65,10 +65,10 @@ class BST:
         while(temp != None):
 
             if temp.data < data:
-                temp = temp.left
+                temp = temp.right
 
             elif temp.data > data:
-                temp = temp.right
+                temp = temp.left
 
             elif temp.data == data:
                 return data
@@ -80,9 +80,9 @@ class BST:
         if not root:
             return -1
         elif root.data > data:
-            return self.recursive_search(root.right, data)
-        elif root.data < data:
             return self.recursive_search(root.left, data)
+        elif root.data < data:
+            return self.recursive_search(root.right, data)
         elif root.data == data:
             return data
 
@@ -133,7 +133,7 @@ class BST:
     def find_height(self, root):
 
         if not root:
-            return -1
+            return 0
 
         return max(self.find_height(root.left), self.find_height(root.right)) + 1
 
@@ -222,7 +222,6 @@ class BST:
                 minnode = self.find_min_recursively(root.right)
                 root.data = minnode.data
                 root.right = self.deleteNode(root.right, minnode.data)
-
         return root
 
     def find(self, root, data):

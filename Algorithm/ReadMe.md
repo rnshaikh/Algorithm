@@ -292,7 +292,7 @@
             1) self balancing binary search tree like read-black, avl , b tree do rotations to maintain
             binary search property
 
-            left rotation : in right rotation parent is swap with right child
+            left rotation : in left rotation parent is swap with right child
 
             here right child become root parent become left child, parent left child will same
             righ child's left child become right child of parent, right child's right child will be same

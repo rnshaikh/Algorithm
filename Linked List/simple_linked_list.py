@@ -1,10 +1,5 @@
 
-
-
-
-
 class Node:
-
     def __init__(self, data, node):
 
         self.data = data
@@ -14,10 +9,8 @@ class Node:
 class Linked_list():
 
     def __init__(self, head=None):
-
         self.head = head
-
-
+    
     def push(self, x):
 
         node = Node(x, None)

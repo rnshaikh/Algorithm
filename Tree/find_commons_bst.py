@@ -45,11 +45,9 @@ class Solution:
         # code here
 
         res = self.inorder(root1, [])
-
         res_1 = []
         for i in res:
             fin_res = self.find(root2, i)
             if fin_res:
                 res_1.append(fin_res)
-
         return res_1

@@ -1,4 +1,8 @@
 from collections import defaultdict
+"""
+Given a directed graph, find out if a vertex j is reachable from another vertex i for all vertex pairs (i, j) in the given graph. 
+Here reachable mean that there is a path from vertex i to j. The reach-ability matrix is called the transitive closure of a graph.
+"""
 
 
 """

@@ -45,19 +45,19 @@ class Solution:
 
 class Solution:
     #Function to reverse a linked list.
-    def recur(self, p, head):
-
-        if(p.next == None):
-            head = p
-            return
-        self.recur(p.next, head)
-        q = p.next
-        p.next = None
-
-
-    def reverseList(self, head):
-        # Code here
-
-        self.recur(head,head)
-
+       def recur(self, head):
+        
+        if not head or not head.next:  # for 0 and 1 node linkelist
+            return head
+        
+        new_head = self.recur(head.next)
+        p = head.next  #for 2 node linked list
+        p.next = head
+        head.next = None
+        return new_head
+        
+    
+    def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        
+        head = self.recur(head)
         return head

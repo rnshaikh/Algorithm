@@ -2,7 +2,8 @@
 
 """
     use divide and conquer merge sort:
-    at time of merge if element in left is greater that element in right copy that element in array update inversion_count = count+ len(left[i:])
+    at time of merge if element in left is greater that element in right copy that element in array update 
+    inversion_count = count+ len(left[i:])
 """
 
 

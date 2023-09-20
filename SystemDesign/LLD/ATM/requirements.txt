@@ -1,0 +1,57 @@
+
+
+1. clarify and gather requirements (functional requirement):
+
+    functionality:
+    1. user can deposit money
+    2. user can withdraw money
+    3. user can deposite check
+    4. user can enquiry about account
+    5. user can transfer funds from one account to another account
+
+    Actor:
+        1. normal user
+        2. branch manager : can see opening and closing balance for day
+        3. admin : can solve technical problem / filing cash
+
+
+2. estimate scale and performance requirement:
+    how manay daily active users:
+    what is storage requriements : how many machine is required
+    what is tps/qps
+
+    so ATM is used by 1 person at time for simplicity we can say 1 machie of 16gb RAM is enough
+
+3 Design tradoff (cap theorm) and design choices:
+
+    1. is latency is required : yes
+    2. is consistency vs availibility is required : 1 machine so consistency
+
+
+4) Desgin for single machine:
+    1) schema diagram 
+    2) api design
+    3) buisness logic
+
+
+                        
+
+
+
+
+5) scale for number we have estimated in estimate scale or performance requirement stage:
+    discuess design for numbers that we have estimated in estimate scale or performance requirement stage.
+
+
+
+
+
+
+
+
+
+
+
+
+
+

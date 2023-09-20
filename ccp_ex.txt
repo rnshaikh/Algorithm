@@ -1,0 +1,1287 @@
+cloud computing:
+
+    it is practice of using network of remote server on internet to store, process, and compute data rather 
+    than using local maching.
+
+    evolution :
+        first there was single physical machine serving single app
+        then vm maching with hypervisor running app on each vm's on single server
+        then containers comes which run on vm using docker deamon without depending on underlying
+        hardware
+        then functions running in each container and this function executed when it is required no need to maintained code
+        just deploy function pay for its execution like lambda
+
+    types:
+
+        1) SAAS: software as service.
+            here organization provide complete software so we dont have to maintained any server
+            company take care of maintainance of underlying machines
+
+            you just use this software which remain available for 24/7
+            ex. microsoft 365, salesforce
+
+        2) PAAS: platform as service
+            here organization provide you platform for deploying and maintaining you software or application
+            it takes care of underlying server.
+
+            dont worring about provisioning , configuring, maintainance of underlying hardware
+
+            ex. heroku.
+
+        3) IAAS: Infrastructure as service
+            here organization provides you actual hardware where you can deploy and maintained your application
+            here you take care of you underlying hardware infrastructure.
+            ex. you buy server, databases and maintained it.
+
+            you dont worry about it staff, datacenter and hardware
+
+            ex. aws, azure, google cloud, oracle
+
+
+    cloud deployment model:
+
+        public cloud : this is cloud or remote service proveded by 3rd party paticularlly
+        infrastructure service prodvider. it is also call cloud-native
+
+        companies which are starting out today, small companies, startups,
+        are using public cloud
+
+
+        private cloud : this cloud is deployed on organization datacenter. usually done using
+        openstack. it is also called on premise cloud
+
+        organization which are old have strict policy of security compliances.
+        ex. government, strict data sensitive org hospitals,
+
+
+
+        hybrid cloud : here both public cloud and private cloud is used. communicate with each other using
+        vpn
+
+        established organization which are moving some part to public cloud. they can't mover all to public cloud
+        due to complexity or some security compliances
+
+        ex. banks, fintect, investment management
+
+
+        cross cloud : here multiple cloud service provider used and they may be and may not be communicate with each other using
+        azure arc, google anthos or they might be use independantly
+
+
+    AWS : create account - root user = with email  - have account id and account alias
+    IAM:
+        account id is of 12 digit
+        create user with access to specific service
+        can have access key and secret key as well as password
+
+        for IAM user login - account id or alias of root user, iam user name , password
+        after login right corner we can se username@accoutalias
+
+
+    AWS Budget:
+        create budget with specific amount so it will notifed you how if it goes above threshold
+        it also show forcasted , usd budget,
+        down service like ec2 if budget goes above threshold
+
+        freet tier :
+            in billing preference : we can set up email to notified if you go above free tier
+
+        cloud watch alarm:
+            you can also set alarm with billing metric to notifed to if it goes aboe thresold
+            here you need to setup sns topic and confirm your email id
+
+            it also gives you anomally detection, down services if it goes above threshold like ec2
+
+
+    Innovation Waves or k-wavers (kondratiev):
+        it hypotheized cycle like phenomena in global world economy
+        phenomena is closely connected with technological life cycle
+
+        for ex. in 90 there is wave of information technology 20 there is wave of cloud
+
+        each cycle consist PRDE: prosperity, recession, depression, expansion
+
+
+    burning platform:
+        burning platform is used when organization move from old technology to new one with
+        with uncertainty of success and can be fear that organization future survival depends on
+        its digital tranformation
+
+
+
+    computing power:
+
+        it metric which measure at what speed computer perform its computational task
+
+
+        cpu = intel xeon cpu - used in aws elastic
+        gpu = aws inferentiare chip  - which 50 times faster than cpu
+        quantum computing = aws bracket -Rigetti 16Q apsen4  100 million times faster
+
+
+
+benefits of Cloud:
+    why organization will use cloud or migrate to cloud
+
+    1) agility:
+        increase speed and agility
+
+    2) pay as you go pricing
+        pay as your uses instead of paying fix amount
+
+    3) High availibility
+
+    4) security
+
+    5) high scalability
+
+    6) high reliability
+        stop spending money on managing and maintaining data centers
+
+    7) fault tolerance
+
+    8) disaster recorvery
+
+    9) elasticity
+
+
+six advantage of cloud (aws referenc doc):
+
+    1) pay as you go pricing:
+        instead of paying fix price. you pay for what you consume on time basis.
+
+    2) benefits from massive economies of scale:
+        you are sharing resources with other customers to get unbeatable savings
+
+
+    3) stop guessing capacity (high scalability):
+        scale up or down to meet current need. launch or destory server with one click
+
+
+    4) agility :
+        launch resources with few clicks in minutes instead of waiting days for it team to build resource on -primeses
+
+    5) high reliability :
+        stop spending money on managing and maintaining data centers
+
+    6) high availabiltiy:
+        go global in minutes. deploy you app in multiple region with in few clicks
+
+    7) security:
+        aws comes with default server security
+
+
+Aws Global Infrastructure:
+
+    aws global infrastructure is globally distributed hardware and datacenters that are
+    physically connected together to act as single resource for end customers
+
+    aws global infrastructure is made up of following resources:
+
+    25 launch region  --- are distrinct location which consist one or more availibility zones. 
+    every region is independant of other region interms of powe supply, location, water. each region has 3 availibility zones
+    new service always become accessible in us-east-1 region which is first region of aws (2006). not all aws services are available in all regions. billing info is appears in us-east-1 region.
+    cost of services are vary as per region
+
+    81 availibility zones -- are physical location that made up of one or more datacenter. datacenter is building whcih thousands of 
+    computers. each region containe 2 or 3 availibility zone.
+    data cenrters in region are isolated from each other (in different building). 
+    but they are close enough to provide low latency < 10ms. it is common practice to run workload in 3 availibility zones
+    to ensure services remain available even if 1 or 2 datacenters failed (high availibility)
+
+    availibility zones are represented by region code followed by letter identifier
+    ex. us-east-1a
+    subnet is associated with AZ and you don't choose AZ directly . you choose subnet which associated with AZ.
+
+    108 direct connection location
+    275+ point of presence
+    14 local zones
+    17 wavelength zones
+
+
+
+    AWS Global Network:
+        AWS global netword is interconnection between aws global infrastructure.
+        it is expressway where data moves very fast beetwen aws datacenters all. data is encrypted.
+
+        Edge locations act as on and off ramps to aws global network.
+
+        servivces uses edge locations as On ramps:
+
+        AWS global accelerator and AWS s3 transfer accelaration:
+            uses edge locations as on ramps to quickly reaches aws resources in other region
+            traversing fast global aws netword.
+
+
+        services uses edge locations as off ramps:
+        AWS cloudfornt cdn:
+            it uses edge location as off ramps, to provide at edge storage and
+            compute at end user
+
+
+        VPC endpoints:
+            ensure resources stay withn aws netword and not access through public network
+            to give fastes network.
+
+
+    AWS POP pont of presense:
+        aws point of presense is intermediate location between aws region and end users.
+        this coud be a data centers and collection of hardware.
+
+        aws point of present is datacenters owned by aws or trusted third partner.
+        this point of presence used by aws services for content delivery or expadiated upload.
+
+        pop resources are edge location and regional edge caches.
+
+
+        edge location are data centers that hold cached of most popular data, file, pages
+        to reduced the delivery of distance to end users.
+
+        regional edge caches are data centers that hold large cache of less popular data, file, pages.
+        to avoid the full round trip and reduces transfer fee.
+
+
+        following aws services uses pop.
+
+        aws cloudfront: it is content delivary networdk. you point you websites to clodufront. 
+        it allowed you to choose origin that will
+        source cache. cached then content what origin will retruned to different edge locations in the world
+
+
+        aws s3 transfer accelaration: it allow you to generate special url which end user 
+        can used to upload file to nearest edge location.
+        then file can tranfer to s3 through aws network much faster.
+
+
+        aws global accelerator : that can find optimal path from end user to your web servers. 
+        aws global accelerator are deployed with in
+        edge location so user traffic are goes through edge location insted of directly to web server.
+
+        this mostly use if you server is deployed in one region . user traffics are coming from other region.
+
+
+    AWS Direct Connection Location:
+
+        aws direct connection is dedicated or private connection between you aws cloud and office, datacenter, co-location
+
+        Direct connect has two very fast connection options:
+        1) low bandwidth :  50mbps to 500mbps
+        2) high bandwidth:  1gbps to 10gbps
+
+        it helps reduce network costs and increase bandwidth throuput. normally used for high traffic networks
+        it provide reliable and secure connection . most consistent network than convential internet base connection
+
+
+
+    local zones:
+        local zones are data centers that located in densly populated area to give very low latency performance.
+        usually 7ms
+
+        los angeles, california is first local zone deplyed by aws.
+        it is logical extension of us-west region
+
+        identifier for local zone is as follows:
+        us-west-2-lax-1a
+
+        you want use local zone you need to opt in . submit ticket for that
+
+        there specific service where local zone are available, ec2, ebs, vpc
+
+        purpose of local zones to support high demanding latency sensitive application.
+
+
+    wavelength zones:
+        wavelength zones allow edge computing on 5g networks
+        bascally aws vm and user are communication though ultra low latency 5g networks
+        aws is partner with 5g network provider telecom partner to utilize their 5g network.
+
+
+
+Data Residency:
+
+    it is physical or geographical location where organization or cloud resources is resides.
+
+    complaince boundries:
+
+        it is complaince rule given by organization or goverment which regulates where cloud or organization
+        data will reside
+
+
+    data soverignity:
+        it legal rules asserted over data because it physically location comes under that
+        jurisdication control
+
+
+    to allow data residency on resource in aws you can
+
+    aws config:  it is use to create configuration rule which continuesly check aws resources and alert if it deviates from
+                 given config.
+
+    aws outposts:  it is physical rack of servers that you can put in data centers.
+                   your data will resides wherever outposts will reside.
+                   it is comes in 3 form : 42u, 2u, 1u
+
+    iam policies: you can create iam policies for different user's to restrict access to other servcies 
+                  which not assigned by iam policies.
+
+
+
+AWS Ground Station:
+
+    it aws fully manage service that let's you control sattelite communication , gathered , 
+    process data and scale you operation without having to
+    worried about managing and building your own ground station.
+
+    ground station is used for
+
+    weather foracasting
+    video broadcasting
+    sattelite communication
+    surface imaging
+
+
+    To use ground station:
+    you set up contact about (select location, set up satelite, start time, end time, ground location)
+    use aws ground station aws ami to launch ec2 instance and uplinked and downlinked data during contact or
+    store downlinked data in aws s3 bucket.
+
+
+ARN : Amazon Resource Name
+
+    ARN is amazon resource name that unquely identify each aws resources.
+
+    arn format
+
+    arn: partition : service: region id : account id: resourceid : resource type
+
+
+    partition is aws cloud type:
+        aws - aws global
+        aws-cn - aws china region
+        aws-gov-cloud = aws gov cloud
+
+
+AWS Cloudshell:
+    it shell command line in build in aws console. you can access this shell on browser usin aws console.
+    in shell you can interact different aws service using aws cli.
+    it is free service.
+
+    preinstalled tools
+        aws cli, git, python, node, vim, sudo, pip, npm, tar,
+        wget, zip and many more
+
+
+    storage:
+        1gb of storage free per region
+
+    save files and settings
+        files saved in home directory available for next session
+        in same region
+
+
+IaC Infrastructure As Code:
+
+    in iac you write code or configuration to create, manage, update and destroy infrastructure or services required for you application to run
+    iac is blueprint of you infrastructure
+    it allow you to store, version, inventory you infrastructure.
+
+    ex. terraform , aws cloudformation template, aws cloud development kit
+
+    aws cloudformation template:
+        it is declaritive iac tool
+        it is explicit. what you write is what you get.
+        no unusual creation of services or behaviour.
+        you write script in yaml, xml, json form.
+
+    aws cloud development kit (cdk):
+        it is imperative iac tool
+        it implicit. you say what you want , rest will be filled in.
+        there is chances of misconfiguration
+        it does more than imprative.
+        you write script in programming language such as python, node, ruby
+
+
+Shared Responsibility Model:
+
+    SRM is cloud security framework that defines the security obligations of customer versa cloud
+    service provider.
+
+    Aws Take of following security:
+    aws is responsible for security of the cloud
+
+    Hardware, global infrastructure:
+    1) launch region 2) avalibility zones 3) direct connection location 4) edge location
+
+    software:
+    1) compute 2) storage 3)database 4)networking
+
+
+
+    customer take of on following security:
+    customer is responsible for security in the cloud
+
+    configuration of managed service or third party software
+    1) platforms 2)application 3) identity access management (IAM)
+
+    configuration of virtual infrastrucutre and system
+    1) os 2)networking 3)firewall
+
+    security or configurations of data
+    1) client side encryption 2) server side encryption 3) networkin traffic protection
+    3) customer data
+
+
+
+    Shared Resposibility Architechture:
+
+    1) Virtul machine : independent machine on share physical server done using software. EC2, lightsail
+
+    2) Containers: it isolated block on os which can used to deployed multiple app. ECS, ECS fargate, EKS
+
+    3) Serverless: here code or function is directly deployed. Lambda
+
+
+
+HPC High performance computing services:
+
+    cluster of hundreds and thousands of servers with fast connection between them with purpose of boosting computing capacity.
+
+    Aws Parallel Cluster : it is open source cluster management tool that makes it easty to deploy and manage high performance cluster
+    on AWS.
+
+    nitro system : it is dedicated hardware and lightwight hypervisor that enabled faster innovation and enhanced security.
+    it is used by all new ec2 instances types.
+
+    Nitro Cards -- specialized card for vpc, ebs, instance storage and controller card
+    Nitro security chips: it is integrated to motherboard to provide security to hardware.
+    Nitro hypervisor -- lightweight hypervisor cpu and memory allocation bare metal like performance.
+
+    bare metal instances : you can ec2 instance without hypervisor so that you can run workload directly on hardware for
+    maximum performance and control. ec2 instance M5 and R5 run as bare metal instance
+
+
+
+Edge And Hybrid Computing:
+
+    Edge Computing : when you push you workloads outside of your network to run close to destination location.
+    ex. pushing workload to iot devices, phones, external servers not within your cloud network.
+
+    Hybrid Computing: when you can run your workloads on both on premise data center as well as aws virtual private cloud.
+
+
+    Aws outposts : it is physical rack of server's that you put into your data centers. 
+    it is allow you to use aws api and services such as ec2.
+
+    AWS wavelength : it allow you to build and launch you application in telecom datacenter. 
+    by doing this your application will have ultra low latency as they will
+    use 5g network and be closest as possible to end-user.
+
+
+    AWS localzone  : it aws data center located outside aws region so that you can use aws closer to end destination
+
+    vmware cloud on aws : allow you to manage on premise virtual machine using vmware as ec3 instance. 
+    date center must be using vmware for virtualization
+
+
+types of storage services:
+
+    EBS : elastic block storage:
+        data is stored or split into block of fixed size
+        operting system can directly access data
+        supports only single write volume.
+        it virtual hard drive attached vm.
+
+
+    EFS : elastic file storage:
+        it store file and its metadata
+        file can transfer using file transfer protocals
+        multiple read and single write can be perform on file.
+
+
+    aws s3: simple storage service:
+        it store object, metadata and unique id
+        multiple read and multiple write can be perform on object.
+        scales with no file limit or storage limit
+
+        when you just want to upload file and not have to worry about underlying infrastructure.
+        not suitable high iop/sec
+
+        it store data in object architecture.
+        each object have key, value which actual object, version id, metadata
+        it has no limit on storage
+        s3 bucket is created in global namespace so should have unique name
+
+        each file in bucket can be of 0 bytes to 5 terabyte size.
+
+
+        aws offers different s3 storage classes that trade retrival time, accessibility, availibility and durability
+        as go cheaper.
+
+        s3 standard (default):
+            fast, 99.99% availibility, 11 9's durability. replicated across 3 availiblity zones.
+
+        s3 intelligent tiering:
+            use ml to move object across different class as per there uses.without any performance impact or added overhead.
+
+        s3 standard - IA:
+            still fast, cheaper if file access is less than once a month. additional retrival cost is applied.
+            99.9% availability
+
+        s3 one zone - IA:
+            still faster. replicated in only one AZ. 99.5% availibility, chepaer than standard-IA. 20% reduced durability.
+            data can get destroyed.retrieval fee is applied.
+
+        s3 glacier:
+            it is long term cold storage for historical data. retrieval can take minutes to hours. it very cheap storage.
+
+        s3 glacier deep archive:
+            it is lowest cost storage class. retrieval takes 12 hours.
+
+
+    AWS Snow Family:
+        snow family is group of storage and compute devices that move data physically in and out of cloud
+        data is thrnsfer over internet and private connection is too slow, difficult coslty
+
+        snowcone: comes in two sizes : 1) 8TB storage (HDD) 2) 14TB storag (SSD)
+
+        snowball edge : comes in two types: 1) storage optimized: 80 TB  2)compute optimized: 39.5 TB
+
+        snow mobile: 100 PB storage
+
+Database
+Data WareHouse:
+
+    it is relational data that is used for handling analytic workloads.
+    it is store data as relational table.
+
+    company will have terabytes of relational and they need analytics or some meaning full data from it
+
+    it generally used to perform aggragation. it is generally designed to hot. it perform query on large data very fast.
+
+    it is used for infrequent access. they are not used for real time reporting
+
+    data from relation database is stored in data warehouse after prefroming some tranform in ETL cycle.
+
+    aws redshift is petabyte size data warehouse.
+
+
+No SQL Database Service:
+
+    DynamoDB : it serverless no sql key/val and document database. 
+    it designed to scales to billion of records with gauranteed consistent.
+    data return at least a second. you dont have to worry about managing shard. it is very fast, scales well. 
+    it is flagship database service
+    of amazon
+
+
+    DocumentDB: it is no sql document database which is compatible with mongoDB. 
+    mongoDB very popular open source no sql database among devloper.
+    when you want mongodb you can use documenntDBFF
+
+    Amazon KeySpace : it is fully managed apache cassandra database. 
+    cassandra is open source no sql key/value database like dynamodb but dynamodb can
+    also store document have more functionality. when you wan apache cassandra key/value data base
+
+Relation Databas Service:
+
+    AWS RDS - RDS is relation data base service that supports different types of sql engines. it is most popular database used by
+    companies and start up
+
+    SQL's:
+    1) Mysql : most popular relation database which not owned  and licence by oracle.
+    2) mariaDB: it forked from mysql which owned by oracle. it open source.
+    3) psql : postgresql is also popular relation datbase and have additional features than mysql but comes with complexity.
+    4) oracle : it is relational database licence by oracle
+    5) microsoft sql server: it is relation database licence by microsoft
+    6) Aurora: fully manged relational database of either mysql 5x fast or psql 3xfaster.
+                when you want highly available,durable, scalable, secure database of mysql and psql.
+       Aurora Serverless: it is serverless on demand version of aurora. when you want most of benefits of aurora but 
+       can trade of cold starts.
+       or you dont have lots of traffic.
+
+    7) RDS on VMWARE: it allow you to deploy rds engine to on-premise data center uses vmware for virtualization.
+
+
+Cloud native networking Services:
+
+
+    Aws Account
+        region
+            vpc -- virtual private logically isolated section of cloud where you launch your resources
+              AZ - Availibility zone
+                public subnet -  logical partition of ip network into multiple smaller network segment          NACL - act as firewall at subnet level   Route Table:                             internet gatway - enable access to net
+                     security groups - security group act as firewall at instance level                                                                   determine where your network traffic from subnet directed
+                        ec2 instance
+                private subnet -
+                    RDS DB
+
+
+    VPC and subnet:
+        vpc : it logically isolated section of aws cloud where you launch aws resource . it has range ip using CIDR range
+        CIDR range of ip address = 10.0.0.0/16 = 65536 ip address
+
+        subnet - it logical parttion of ip network into mutiple small segment. it has smaller CIDR range than vpc
+        CIDR range of ip address = 10.0.0.0/24 = 256 ip address
+
+        public subnet - it is range ip which can reach by public internet
+        private subnet - it is range of ip which is private not reachable by public net
+
+
+    security gorups vs nacl
+
+    nacl  = it network access control list. it is act as firewall at subnet level
+            it support allow/deny rule
+            here you can block ip which is abusing application
+
+    security groups - it acts firewall at instance level.
+                      implicitly denies all traffic. you can create only allow rule.
+                      allowing ssh access on port 22 for ec2. you can not block single ip here
+
+
+EC2 instance Families:
+
+    ec2 intances are divided into different families based on combination cpu, memory, networking capacity.
+
+    general purpose:
+        balance of compute, memory. networking resources.
+        A1, T2, T3, T4, M4, M5, Mac
+
+    compute optimized:
+        used for larged workload or cpu intensive task, high performance server. gaming , ad server
+        c5, c4, cbn, c6g eetc
+
+    memory optimized:
+        fast performance for workload that process large data sets in memory.
+        R4, R5, X1, high memory, z1d
+        use cases in memory cache, in memory databases, big data analytics
+
+    Accelerated optimized:
+        hardware accelartores, or co-processors.
+        p2, p3, p4, G3, G4ad
+        use cases in machine learning, compute finanance, speech recognition
+
+    storage optimized:
+        high performance read write access to very large data sets on local storage.
+        D2 D3, I3, H1
+        uses cases in no sql , data warehouse, transactional databases
+
+
+    ec2 instance type is combination instance size and family
+
+    instance type:
+        nano, micro, small, medium, large, 2xlarge, 4xlarge, 8xlarge, 9xlarge, 16xlarge
+
+
+    Pricing:
+        on-demand - it charge as you used.  or pay as you go model.
+                    it default model applied when you create instance.
+                    it charge for per second or per-hour
+
+                    it suiteable for unpredectable, spikey workload for exprerimenting app traffic.
+
+        Reserved: Designed for application for steady state, predicatable usage and reserved capacity.
+                  Reduced Pricing is based on Term * class offering * RI attributes * payement option
+                  Term =  longer the term greater the saveing. contract of using 1 or 3 year.
+                          reserved instance do not removed automatically.
+                          when expired it will changed to on-demand
+
+                  class = less flexible class the greater the savings
+                          standard :  up to 75% reduced cost compared to on-demand
+                                      cant change RI attribute.
+                          convertible - up to 50% reduced cost compared to on-demand
+                                        can exchange RI on RI attribute it its less or equal value.
+
+                  payement option - greater the upfront the greater the savings
+                            all upfront - make all payment in advance.
+                            partial upfront - half cost paid in advance other half is paid hourly discounted rate.
+                            NO Upfront - no advanced payment. payment is done hourly discounted rate.
+
+
+                  RI Attributes: 4 RI Attribute
+                            1) Instance Type : M4large, T2micro, T1medium, T3micro
+                            2) Region : Region is which reserved instance purchased.
+                            3) Teanancy: where you instance run on shared or single tenant hardware.
+                            4) platform : operating system.
+
+
+                 Limit:  you can puchased 20 regional RI per region and 20 zonal RI per az.
+                         you can not excced on-demand instance limit by running regional RI. limit 20
+
+        spot : aws offer there remaining vacant compute capacity.
+                it 90%  discount as compared to on-demand instance.
+                it can be get terminated or started in between.
+                suitable for app have flexible start time and end time and app which
+                are low compute requirement.
+
+        dedicated instances - it is physical instance will remained same. run on same hardware.
+                             single tenant hardware.
+
+
+    savings plan : plan offered same discount as RI but simplifies purchase process.
+                   there are 3 types of savings plan.
+                   1) Compute Savings Plan. : provide most flexibility and reduced cost up to 66%.
+                   automatically applied to ec2, fargate, lambda.
+                   2) EC2 instance savings plan: provide lowest price. saving up to 72% in exchange of commitment to
+                    used individual instance family in region.
+                   3) sage maker saving plan.: reduce sagemaker cost by 64%. automatically apply to sagemaker 
+                   usage regardless off size, region, family, component.
+
+
+    zero trust model:
+        it is secruity model which provide access based trust no one and verify everythin.
+        in tradition security, malicious actor being able to by-pass access control which demonstrates it is not sufficient
+        no trust model is primary security parmeter which is first line of defence to protect cloud services and its assets.
+
+        network centric: trdaditional security model uses vpn and firewall to control access to resource 
+        as there less workstation outside of office.
+
+        identiy centric: zero trust model uses identitiy based authentication and authorization to 
+        provide access to resources based on where when, who is wants to access resources
+
+        identity centric is another level over network centric and it is not replacement.
+
+
+        we can implement identiy security control in aws usin IAM  service:
+
+        IAM service:
+            define iam policies
+            permission boundries
+            service control policies (organization wide policies)
+            IAM policies condition:
+                aws.SourcIp: restrict based on ip
+                aws.RequestRegion : restrict based on request region
+                aws.MultiFactorAuthPresent: restrict if multi factor auth is present or not
+                aws.CurrentTime: resrtrict based on time of the day
+
+        aws does not have ready to use identity security control. thus 
+        aws considered to not have zero trust offering for customers and
+        thrid party services need to be used.
+
+        collection of aws service can be used to setup intelligent identity security control but required expert knowledge.
+
+        aws cloudtrail : is used to track all api calls
+        aws guardduty: it detect malicious activity based on cloud trail and other logs
+        aws detective: it takes output of aws guardduty, analyzed, invasitgate, quikley detect identity security issues.
+
+
+        third party service:
+            like azure active directory have real time risk detection based on more data points than aws.
+            source ip
+            time of day
+            mfa
+            device and application
+            what is being access
+            verifications and logic controls is more robust
+
+            azure active direcotry
+            google beyond corp
+            jumplcloud
+
+            you can use third party services used aws single sign on to access aws resources.
+
+
+    Directory Service:
+        Directory service maps name of network resources to their network address.
+        directory services is shared infrastructure information which used to mange, adminstrator,
+        organized resources on network:
+        1) volumes
+        2) machines
+        3) printer
+        3) files
+        4) folder
+        5) users,groups, device and telephone number
+
+        it is important part of network operating system. directory server is server which provides
+        directory service.
+
+        1) DNS : domain name service
+        2) azure active directory service
+        3) Apache directory service
+        4) oracle directory service (OID)
+
+        microsoft introduced activity directory domain services in window2000 to allow organization to manage
+        on prima mutple component and system by giving single identity per user or singel sign on
+
+
+    IDP identity provider:
+        identity provider provide indentity information for user to authenticate to multiple application which
+        supports that identity provider
+        facebook, linkedin, twiiter,amazon
+
+        openid: it is standard decentrlized authentication protocal. it gives identity of user to application server. who you are
+        oauth2: it is standard protocal for authentication and authorization it does not share password but share oauth2 token to access resources.
+        saml (security assertion markup language): it used to exchange authentication and authorization information between
+        idp and service provider
+
+
+    LDAP (lightweight directory access protocall):
+        it used for accessing and maintaining distributed directory information services over internet protocal
+
+        LDAP is used to store users username and passwords.
+
+        LDAP is used for same sign on - in same sign on user can use same user and password but they have to enter it every time
+        when they want to login.
+
+
+    MFA : (Multi Factor Authentication):
+
+        MFA : in mfa you have to use more than 1 factor to authenticate to application or platform
+        first factor you to username and password to loggin and after that in 2nd factor you have to use
+        other device such as phone to confirm that its you have logging in
+
+        MFA authentication protects if you first factor get comporimized passowrd.
+
+        mfa its provide all clouds and other application such facebook, insta, twiter
+
+    AWS IAM (Identity And Access management serviece)
+        IAM is used for creating and managing aws users, groups, and roles and assigning permission
+        to them to used different aws resources
+
+        IAM policy: it is json document which grants permission to used different aws resources.
+                    IAM policy is attached to IAM identities
+
+        IAM permission : it action which user can perform on different aws services.
+                        it is defined in IAM policy
+
+        IAM identies:
+            IAM user : it is individual user which logged into aws console via ui or programmatical
+                    access services
+
+            IAM group : user's of same king is group under one name so every user will have same permission
+                        like develop, admin
+
+            IAM role : we can create role and assigned specific permission (action) in iam policy to role 
+            and then assigned to resources.
+
+
+    POLP(principle of least priviledge):
+        it is security concept which provide least amount of permission to perform task
+
+
+        JEA : just enough access is provide exact action or permission to perform task
+
+        JIT : just in time is provide permission or action to perform task for short duration time
+
+
+        risk based adaptive polices: each attempt to resource is anlayzed and risk score is 
+        caluclated how likely resource get compromized from source.
+        risk score could be based on many factors.
+
+
+    AWS Account root user and user:
+        AWS acounnt : which holds all aws resources
+        AWS root user : it is special user which have full access to resources.
+                        root user can not be deleted
+                        root user access can not be restricted by iam policies
+                        root user access key should not be generated
+                        root user should have multi factor authentication
+                        root user used only for administrative task
+                        changing account settings
+                        delete aws account
+                        changing or canceling aws support plan
+        aws user: it normal user which perform specific task that it has permission or access.
+
+
+    AWS Control Tower:
+        aws control tower help enterprises to quickly setup secure, aws multi account
+        provide you baseline environment to get started with multi account architecture.
+
+        aws landing zone:
+            provide baseline envionment to start launching production ready workloads.
+            sso enabled, centralized aws cloud trailing, cross account secrity auditing
+
+        account factory:
+            automates creation new aws account
+
+        guardtrials:
+            pre packaged governance rule for security, operation, complaince that customers can
+            select and apply enter prises wides or to specific groups of accounts.
+
+
+    AWS Config:
+
+        change management : it is formal process: 1) to enforce, monitor, remediate changes
+
+        compliance-as-code: when we use programing to enforce, monitor and remidate changes as per compliance rule 
+        or configuration
+
+        aws config: it compliance as code framwork that allow us to manage change in our aws account per region basis.
+
+    AWS Quick Starts:
+
+        aws quick start are prebuild templates create by aws and aws partners that help you to deploy wide range of stacks
+
+        aws quick starts have 3 main parts:
+
+            1) reference architecture of deployement
+            2) cloudformation templates stack that automate and configure deployment
+            3) deployment guides explaining architecture and configuration detail.
+
+
+    Provisioning Services:
+
+        provisoning : it is alocation and creation of resources or aws services for customer.
+
+
+        AWS EB : it platform-as service. it used for automating deployment of web application like heroku.
+                 it uses cloudformation template underlying. it not recommended for production. 
+                 you choose language and pushed you code.
+                 all underlying infrasturcture creation handle by elasticbeanstalk
+                 create following services:
+                  elastic load balancer
+                  ec2 instances.
+                  db instances.
+                  logging services cloudwatch sns
+                  security groups.
+
+        AWS cloudfroamtion template. it infrasturce as code service where you write template in json or xml 
+                                     for creating and managing or scaling aws resources.
+
+        aws quickstart: bre build cloudformation template stack for deployment of wide range of architecture.
+
+    AI and ML:
+
+        Artifical intelligence is nothing but machines with brain
+
+        machine learning : we feed experimental data to machine to learn so that they can predict future data points.
+
+        deep learning : is machine with complex neural network which mimic human brain to solve complex problem
+
+        aws sagemaker : it is ml framework used to build, delpoy, managed machine learning model.
+                    pytorch on aws is opensource ml framework
+                    tensorflow on aws is open source ml library
+                    apach2mxnet on aws open source ml framework
+
+        aws sagemake ground truth - is data labeling service. have human label dataset to train ml model
+
+        aws augmented AI : human intervention review service. whin ml model make prediction it is not sure about result
+        answer queue up for human review.
+
+        AWS transcribe
+        AWS polly
+        AWS Lex : bot
+
+    Big Data and Analytic Services:
+
+        big data massive amount of unstructured and structured data that is difficult to move and process using 
+        tradition databases softwares.
+
+        aws athena : it is serverless sql query service. it can json, csv files 
+        from s3 bucket load them in temprorary table so that you query them using sql
+        aws elasticsearch: elasticsearch clster.
+        aws cloudsearch :  full text search service
+        aws elastic map reduce: it is used to transform unstructure data to structure data on fly. here you can spark.
+        aws manged kafka service msk: kafka streams and services.
+        aws redshift : flagship data warehouse. fast query.
+
+
+    amazon quicksight : it BI (business intelligence) dashboard that allow you to ingest data from various amazon storage and 
+                        database service to quickly visualize buisness data with minimal programming knowledge.
+
+                        it uses SPICE to achieve blazing fast performance at scal
+                        super fast
+                        parallel
+                        in memory
+                        calculation
+                        engine
+
+
+
+    AWS well Architect Framework:
+        it whitepaper defined by aws to help customer to build their application architecture using best practices defined by aws.
+
+        framework : general defination , general design principle, review process
+
+        framework is divided into 5 pillars or sections which address different aspects that can be applied to cloud architecture
+
+        1) operational excellance : run and monitor system/application
+        2) security : protect data and application, mitigate risk
+        3) reliability: mitigate and recover from disruption / failure
+        4) performance: use computing resources efficativly
+        5) cost optimization: get the lowest price.
+
+
+        general designed principle:
+
+        1) stop guessing you capacity needs
+        2) test application at production scale: clone production env test it. delete it if not in use
+        3) automate to make architecture experimentation easier: use cloudformation template or infrastruture as code tool
+        4) allow for evolutionary architecture: use cicd, rapid releases, version upgradtions
+        5) drive architecture using data : use logging tool to collect data and update mistake
+        6) imporve through game days : simulate traffic through production. kill ec2 instance to check test recovery
+
+        5 pillars:
+        1) operational excellance: perform operations as code. us IAAS to provision, manage, scale your operation or infrastructure.
+                                   deploy frequent small, reversible changes.
+                                   refine operations and procedures frequently: look for continous improvement.
+                                   anticipate failure.
+                                   learn prevoius operation failure.
+
+        2) security : implement stong identity policy
+                      enable tracebility
+                      apply security at all layer
+                      automate security best practices
+                      protect data in transit and at rest
+                      keep people away from data
+
+        3) reliability: automate failure recorvery
+                        test recovery procedures
+                        scales horizontally to increase aggregate availibility
+                        stop guessing capacity
+                        manage change in automation
+
+        4) performance: use advance technologies
+                        go global in minutes
+                        use serverless architecture
+                        experiment more often
+                        consider mechanical sympathy
+        5) cost optimization: implement cloud financial management
+                              adopt consumption model
+                              measure overall efficiency
+                              stop spending money on undifferented heavy lifting
+                              analyze and attribute expanditure
+
+        AWS well architected tool
+            it is auditing tool used to acces your architecture for alignment with aws well architected framework
+            it is checklist with nearby references which can generate report to share with executives and key stakeholders
+
+        AWS architecture center:
+            it is web portal that contains best practices and reference architecture for variety of different workload/application
+
+
+
+    Amazon leadership principle:
+        it is set of principle amazon used for decision making, problm solving, simple brain storming and hiring
+        there 16 principle.
+
+        1) customer obsession
+        2) ownership
+        3) invent and simplify
+        4) are right, A lot
+        5) be curious, learn
+        6) hire and develop the best
+        7) insist on the high standards
+        8) think big
+        9) bias for action
+        10) frugality
+        11) Earn trust
+        12) Dive deep
+        13) have backbone. disagree and commit
+        14) Deliver results
+        15) strive to be earths best employer
+        16) Succes and scale and bring broad responsibiltity.
+
+
+    TCO total cost ownership:
+        it is finaincial estimate intended to help users to determine direct and indirect
+        cost of product and services.
+
+        tco report are useful when organization is migrating from on-premise to cloud infrastructure.
+
+
+        AWS pricing calculator:
+            it online free estimate tool to estimate cost of different aws services.
+
+        AWS migration evaluator:
+            it is estimat tool which calculate organization on-primise cost so that it can compare
+            with aws cloud cost for aws plan migration
+
+    AWS Support plans:
+        there 4 support plans in aws
+
+        1) basic 2) developer 3) business 4)enterprises
+
+        basic                      developer                 business                  enterprises
+        email support for         email support for
+        only billing account      24 hours until reply       same as developer        same as devloper
+
+                                  no third party support     tech support via chat,phone 24/7
+
+                                  general guidance < 24hr       same                   same
+                                  system impaired < 12hr        same                   same
+
+                                                             production system impaired < 4hr
+                                                             production system down < 1hr
+                                                                                     business critical system < 15m
+                                                                                     personal support team
+                                                                                     tAM techinical account manager
+
+
+        7 trusted advisor checks      same as basic                    all advisor checks
+
+        0 usd                        29usd/month                100 usd/month          15000usd/month starting
+
+
+
+    AWS consolidated billing:
+
+        it is aws organization features where all member account bill is consolidated in master/root account
+        of organization
+
+
+    AWS Trusted Advisor:
+        it is recommendation tool which actively monitor your aws account to provide actional recommendations across series
+        of categories
+
+        there are checks for cost optimization, security, fault tolerance(availability),performance, service limits
+
+        7 trusted advisor checks for basic and developer:
+        1) MFA on account
+        2) security groups : specify port unrestricted
+        3) amazon s3 buckets permissions
+        4) amazon ebs public snapshot
+        5) amazon rds public snapshot
+        6) IAM use: discourage use of root
+        7) Service Limits: all service limits checks are free
+
+
+    AWS personal health dashboard:
+
+        awa personal health dashboard provides alerts and guidance about aws events that might affect your aws resources.
+        all aws customers can access personal health dashboard.
+
+        use these alerts to get notified about aws events that can affect aws resources and follow guidance to resolved it.
+
+
+    AWS Credits:
+        it is equivalent usd. aws gives credits to user upn completions of task
+        like participating hackathon, completing sevey
+
+        it have expiry data
+
+        you used it for purchasing some services but not using domain in route53
+
+
+    AWS Budgets:
+
+        using AWS budgets we can setup alerts if our budgets exceeding or approaching defined costs
+
+        we can setup aws budget in monthly, yearly, and quarterly with customizable start and end dates
+
+        create costs, usage and reservation budgets
+
+        alert support ec2, rds, redshift and elasticcache support.
+
+        first 2 budgets are,
+        then budgets cost 0.60usd/month
+        we can create maximum 20000 budgets
+
+    cost allocation tags:
+
+        it metadata we can attach to resource so that when cost and usage reports get generated we
+        can analyzed it using given tag
+
+
+    Billing Alarms:
+        you can also create your own alarms in cloudwatch alarms to monitor spends.
+        you first need to turn on the billing alerts. in cost management preferences
+        the create cloudwatch alarm with billing metric.
+        billing alarm is more flexible than aws budget. it used for complex budgeting.
+
+    AWS Cost Explorer:
+        it let you visualize, understand and manage costs and usage time
+        you can do different aggregation and specific time range.
+        default reports help you gain insights in cost and you usage time
+        you can use forecating to predict future usage.
+
+
+
+    Security:
+
+        Defence in Depth:
+            there are 7 layers of security
+
+            1) data:
+            2) application:
+            3) compute:
+            4) network:
+            5) perimeter:
+            6) identity and access:
+            7) physical:
+
+        CIA triad:
+            confidentiality, integrity, availability model it is describe security principles and
+            their tradeoff relationship
+
+            1) confidentiality : it used to protect data basically using encryption
+            2) integrity : it is maintaining correctness of data over its lifecycle.generally acid property databases
+            3) availibility : it is maintaining data available for access whenever required.
+
+        AWS Artifact:
+            1) AWS Artifact is self service protal for on demand access to aws compliance reports
+
+
+        DDOS distributed denial of service attack:
+            it is overwhelming web application by sending large amount of traffic from different location
+
+
+        AWS Shield
+            it aws protection service managed DDOS attack
+            it is protection service that safeguards application running on aws
+
+            when you route your traffic through route53 or cloudfront you are using
+            aws shield standard.
+
+            protect you against layer 3,4,7.
+
+
+        AWS shield standard free:
+            protect against most common ddos attack.
+            it comes with all aws services.
+            access to tool and best practices to build a ddos resilient architecture.
+
+        AWS shield advanced:
+            additional protection against larger and more sophisticated attacks.
+            Available on
+                route53
+                cloudfront
+                elastic load balancing
+                aws global accelerator
+                elastic ip
+                visibility reports on 3,4 and 7
+                DDOS cost protection
+
+            both plans can be integrate with web application firewall to protect against layer 7
+
+        AWS Guard Duty:
+            IDS/IPS: intrusion detection system/intrusion proctrection system
+            A software application that detect malcious activity or policy violation
+
+            aws guard duty is threat detection service that continously monitor for malicious or suspicious
+            activity and unauthroized behaviour. it uses machine learning to analyze following logs:
+                cloud trail logs
+                vpc flow logs
+                DNS logs
+
+        AWS macie:
+            macie is fully managed service that continously monitor s3 data access activity for anamolies
+            and generates detail alerts when detect risk of unauthorized access or inadevarant data leaks.
+
+            macie uses machine learning to analyze cloudtrail logs
+
+
+        AWS VPN :
+            AWS VPN let you establish secure and private tunnel from your network aws global network
+
+
+            aws site to site:
+                it securly connect on premise or  branch office network to vpc
+
+            aws client VPN:
+                it securly connect user's to aws or on premise network
+
+
+        AWS WAF :
+            AWS web application firewall used to protect your web application from most common
+            web exploits
+
+            you write rule to allow and deny traffic based on http requests content
+
+            it is either attached to cloudfront or ALB
+
+            it protect web application from owasp10 most dangerous attacks
+
+        AWS HSM:
+            AWS hardware security module : it is piece of hardware designed to store encryption keys
+            HSM store keys in memory and never write them to disk.
+

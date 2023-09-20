@@ -60,3 +60,24 @@ class Solution:
 
 
 
+
+from heapq import heappush, heappop
+
+class Solution:
+    
+    def findKthLargest(self, nums: List[int], k: int) -> int:
+        
+        heap_a = []
+        
+        for i in range(k):
+            heappush(heap_a, nums[i])
+            
+        
+        for i in range(k, len(nums)):
+            
+            if nums[i] > heap_a[0]:
+                heappop(heap_a)
+                heappush(heap_a, nums[i])
+                
+        
+        return heap_a[0]

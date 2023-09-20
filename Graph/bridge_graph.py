@@ -2,7 +2,8 @@
 # Bridge Edge in Graph
 
 """
-    Given an undirected graph of V vertices and E edges and another edge (c-d), the task is to find if the given edge is a bridge in graph, i.e., removing the edge disconnects the graph.
+    Given an undirected graph of V vertices and E edges and another edge (c-d), 
+    the task is to find if the given edge is a bridge in graph, i.e., removing the edge disconnects the graph.
 """
 
 """

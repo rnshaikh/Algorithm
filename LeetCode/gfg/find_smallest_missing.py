@@ -1,5 +1,6 @@
 """
-    Given a sorted array of n distinct integers where each integer is in the range from 0 to m-1 and m > n. Find the smallest number that is missing from the array.
+    Given a sorted array of n distinct integers where each integer is in the range from 0 to m-1 and m > n. 
+    Find the smallest number that is missing from the array.
 
     Input: {0, 1, 2, 6, 9}, n = 5, m = 10
     Output: 3

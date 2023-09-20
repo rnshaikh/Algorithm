@@ -1,4 +1,5 @@
-# Given a Binary Search Tree and a target sum. Check whether there's a pair of Nodes in the BST with value summing up to the target sum.
+# Given a Binary Search Tree and a target sum.
+#  Check whether there's a pair of Nodes in the BST with value summing up to the target sum.
 
 
 """

@@ -1,0 +1,97 @@
+
+1. Normalizations: it is database design technique which used to reduced redandancy in data base table as well as insertion, updation,
+   deletion anomalies.
+   Normalization rules divides larger table into smaller tables linked them using relationships.
+  
+   there following types of normal formal
+   1 1st normal form.
+   2. 2nd normal form.
+   3. 3rd normal form
+
+
+1.1NF form:
+   if table has composite or multivalue column then table is not in 1NF form.
+   table is in 1NF if each column has single value attribute.
+   
+   for example person table with firstname, lastname, email, courses if courses store c1,c2 in single row
+   it is not in 1NF. we have to store c2 in 2nd row.
+
+2. 2NF form:
+    table is in 2NF form:
+    1. if it is in 1NF form.
+    2. there is no partial dependency on primary key.
+
+    partial dependency is if any non key column is not dependant on primary key in table is call partial dependancy
+
+    ex. student Marks table
+    student_id, subject_id, mark, teacher.
+    student_id, subject_id is primary key.
+    here teacher name is only dependant on subject_id so it voilates 2NF. 
+
+3. 3NF form.
+   table is in 3NF form:
+   1. if it is already in 2NF
+   2. there is no transitive dependancy.
+
+   transitive dependancy: if non - key column is depend on other non key column then 
+   it is called transitive dependacy.
+
+    ex. student mark table.
+    if we add exam_name and total_marks 
+    then exam_name is dependant on student_id and subject_id beacause each student can have different subject 
+    but total_marks is dependant on exam_name and not on student_id, subject then it is call transitive dependancy.
+
+    so we can create exam table, with exam_name and total_mark.
+
+
+4. BCNF form:
+    it is higher version of 3NF.
+    1. it is in 3NF.
+    2. And, for any dependency A → B, A should be a super key.
+
+    it means, that for a dependency A → B, A cannot be a non-prime attribute, if B is a prime attribute.
+
+    ex. we have a college enrolment table with columns student_id, subject and professor.
+    And, there can be multiple professors teaching one subject like we have for Java.
+    one professor teaches only one subject, but one subject may have two different professors.
+    Hence, there is a dependency between subject and professor here, where subject depends on the professor name.
+
+    In the table above, student_id, subject form primary key, which means subject column is a prime attribute.
+    But, there is one more dependency, professor → subject.
+    And while subject is a prime attribute, professor is a non-prime attribute, which is not allowed by BCNF.
+
+    we have store professor info in other table with subject
+    add foriegn key to college enrolment.
+
+5. 4NF form:
+    table said to be 4NF.
+    1. it is in Boyce-Codd NF.
+    2) there is no multi value dependancy.
+
+    multi value dependancy: 
+    for dependancy A->B for single value of A, multiple value of B is exist is called multi value dependancy.
+
+    we have a college enrolment table with columns s_id, course and hobby.
+    1	Science	Cricket
+    1	Maths	Hockey
+    2	C#	Cricket
+    2	Php	Hockey
+
+    As you can see in the table above, student with s_id 1 has opted for two courses, 
+    Science and Maths, and has two hobbies, Cricket and Hockey.
+
+    Well the two records for student with s_id 1, will give rise to two more records, as shown below, 
+    because for one student, two hobbies exists, hence along with both the courses, 
+    these hobbies should be specified.
+
+    so this is multi value dependancy.
+
+    separate out student course and student hobby in other table.
+
+
+
+
+
+
+
+

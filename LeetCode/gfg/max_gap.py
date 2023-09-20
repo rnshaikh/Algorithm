@@ -1,5 +1,6 @@
 """
-    Given an unsorted array Arr of length N. Your task is to find the maximum difference between the successive elements in its sorted form.
+    Given an unsorted array Arr of length N. 
+    Your task is to find the maximum difference between the successive elements in its sorted form.
     Return 0 if the array contains less than 2 elements.
 
     Expected Time Complexity: O(N)
@@ -34,62 +35,56 @@
 
 
 class Solution:
-
-    def find_min_max(self, arr):
-        min_ele = 999999999999999
-        max_ele = -999999999999999
-
-        for ele in arr:
-            if ele > max_ele:
-                max_ele = ele
-
-            if ele < min_ele:
-                min_ele = ele
-
-        return min_ele, max_ele
-
-
-
+        
+    def find_max_min(self, arr, n):
+        
+        
+        max_num = float('-inf')
+        min_num = float('inf')
+        
+        
+        for i in range(n):
+            
+            if arr[i] > max_num:
+                max_num = arr[i]
+            
+            if arr[i] < min_num:
+                min_num = arr[i]
+                
+        return max_num, min_num
+    
     def maxSortedAdjacentDiff(self,arr, n):
     # code here
 
-        if n < 2:
+        if n <= 1:
             return 0
 
-        min_ele, max_ele = self.find_min_max(arr)
 
-        range_ele = (max_ele-min_ele) + 1
-
-        pigeon_arr = [0] * range_ele
-
-        for ele in arr:
-            pigeon_arr[ele-min_ele] = pigeon_arr[ele-min_ele] + 1
-
-        j = 0
-        for i in range(range_ele):
-            while(pigeon_arr[i] > 0):
-                pigeon_arr[i] = pigeon_arr[i] - 1
-                arr[j] = i + min_ele
-                j = j + 1
-
-        max_diff = 0
-
+        max_num, min_num = self.find_max_min(arr, n)
+        range_1 = (max_num - min_num) + 1
+        
+        
+        hole_arr = [0] * range_1
+        
         for i in range(n):
+            hole_arr[arr[i]-min_num] = hole_arr[arr[i]-min_num] + 1
+            
+        
+        j = 0
+        
+        for i in range(range_1):
+            
+            while hole_arr[i] > 0:
+                hole_arr[i] -= 1
+                arr[j] = i + min_num
+                j = j+1
 
-            if i-1 < 0:
-                if abs(arr[i]- arr[i+1]) > abs(max_diff):
-                    max_diff = abs(arr[i] - arr[i+1])
-
-            elif i+1 >= n:
-                if abs(arr[i]-arr[i-1])> abs(max_diff):
-                    max_diff =  abs(arr[i] - arr[i-1])
-
-            else:
-
-                if abs(arr[i]- arr[i+1]) > abs(max_diff):
-                    max_diff = abs(arr[i] - arr[i+1])
-
-                if abs(arr[i]-arr[i-1])> abs(max_diff):
-                    max_diff =  abs(arr[i] - arr[i-1])
-
+        max_diff = float('-inf')
+        
+        for i in range(n-1, -1, -1):
+            
+            if i-1 >= 0:
+                max_diff = max(max_diff, abs(arr[i]-arr[i-1]))
+                
+                
         return max_diff

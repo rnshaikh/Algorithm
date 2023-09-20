@@ -36,7 +36,7 @@ class Solution:
             sign = False
 
 
-        result = 0;
+        result = 0
 
         dividend = abs(dividend)
         divisor = abs(divisor)
@@ -53,3 +53,43 @@ class Solution:
         else:
             return result * -1
 
+
+
+
+
+
+
+
+
+
+class Solution:
+    def divide(self, dividend: int, divisor: int) -> int:
+        
+        sign = 1
+        if (dividend >= 0) == (divisor >= 0):
+            sign = 1
+        else:
+            sign = 0
+        
+        dividend = abs(dividend)
+        divisor = abs(divisor)
+        
+        result = 0
+        
+        while dividend >= divisor:
+            temp = divisor
+            count = 1
+            
+            while temp <= dividend:
+                temp <<= 1
+                count <<= 1
+                
+            
+            result = result + (count>>1)
+            dividend = dividend - (temp>>1)
+            
+            
+        
+        if sign:
+            return result
+        return -result

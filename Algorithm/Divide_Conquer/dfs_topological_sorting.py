@@ -50,13 +50,11 @@ class Graph:
 
 
     def top_sort(self):
-
-        start_vertex = 0
         visited = [False] * self.v
 
         for i in range(self.v):
             if visited[i] == False:
-                self.dfs(start_vertex, visited)
+                self.dfs(i, visited)
 
         print("topological order is", self.order_list)
 

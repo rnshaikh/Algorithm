@@ -6,7 +6,8 @@
     2) start from 0 update min_cost with index 0 value 0
     3) iterate through vertex :
     4) find min_cost unvisited vertex
-    5) for all adjacent vertex of u of v check if min_cost[u] < graph[v][u] if it is update min_cost[u] = graph[v][u] update parent[u] = v
+    5) for all adjacent vertex of u of v check if min_cost[u] < graph[v][u] if it i
+    s update min_cost[u] = graph[v][u] update parent[u] = v
     6) marked vertex v as visited
 
     time complexity of aove algorithm is O(V2)
